@@ -4,6 +4,7 @@ id: kukulkan-tutorial
 categories: documentation
 environments: js
 status: draft
+prefix:
 analytics account: 0
 
 # Tutorial para el Uso de Kukulkan
