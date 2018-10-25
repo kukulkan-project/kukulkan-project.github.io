@@ -1,13 +1,13 @@
 {
   "environment": "web",
-  "source": "kukulkan-tutorial.md",
+  "source": "kukulkan-demo.md",
   "format": "html",
   "prefix": "../../",
   "mainga": "UA-49880327-14",
-  "updated": "2018-10-24T19:09:07-05:00",
-  "id": "kukulkan-tutorial",
+  "updated": "2018-10-24T23:31:13-05:00",
+  "id": "demo",
   "duration": 0,
-  "title": "Tutorial para el Uso de Kukulkan",
+  "title": "Kukulkan Demo",
   "author": "Kukulkan Team",
   "summary": "Demo para utlizar Kukulkan",
   "theme": "",
@@ -21,5 +21,5 @@
     "js"
   ],
   "ga": "0",
-  "url": "kukulkan-tutorial"
+  "url": "demo"
 }

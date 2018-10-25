@@ -1,0 +1,120 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Kukulkan Demo</title>
+  <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../elements/codelab.html">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <style is="custom-style">
+    body {
+      font-family: "Roboto",sans-serif;
+      background: var(--google-codelab-background, #F8F9FA);
+    }
+  </style>
+  
+</head>
+<body unresolved class="fullbleed">
+
+  <google-codelab title="Kukulkan Demo"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Creación de un proyecto" duration="0">
+        <p><code>create-project --app-name demodsl --database-type SQL_MYSQL --packaging com.example</code></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="1.2 Adición de entidades a partir de la definición de una base de datos" duration="0">
+        <p><code>create-project --app-name demodatabase --database-type SQL_MYSQL --packaging com.example</code></p>
+<p><code>add-entities-from-database --source SQL_MYSQL</code><br>[Se proporcionan las credenciales para la conexión a la base de datos]</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Adición de entidades a partir de la definición de entidades utilizando el Lenguaje Kukulkan" duration="0">
+        <pre><code>// Nombre del archivo: model.3k
+// Se crea la entidad persona con &#39;usuarios&#39; como nombre de la tabla en la base de datos
+entity Persona (usuarios) {
+	-&gt; nombre : String required min(3) max(50),
+	edad : Integer min(5) max(120) required,
+	sueldo : Long,
+	impuesto : Float,
+	activo : Boolean,
+	fechaCreacion : LocalDate,
+	foto : ImageBlob,
+	ManyToOne manager : Persona,
+	ManyToMany proyectos : Proyecto,
+	OneToMany retardos : Retardo,
+	OneToOne user: CoreUser
+}
+
+entity Proyecto {
+	nombre : String required,
+	descripcion : String
+}
+
+entity Retardo {
+	descripcion : String,
+	fecha : LocalDate
+}
+
+views {
+	Proyecto as Sheet
+}
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Adición de entidades a partir del modelo de dominio" duration="0">
+        <p><code>add-entities-from-language --file-name model.3k</code></p>
+<p>Ejecutando la aplicación web:<br><code>run</code></p>
+<p>Use el siguiente comando para matar el proceso:<br><code>stop-process --id [ID_DEL_PROCESO]</code></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Adición de un chatbot" duration="0">
+        <p><code>add-chatbot --url-web-socket wss://chatbot-archetype.herokuapp.com</code></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-49880327-14', 'auto');
+
+    (function() {
+      var gaCodelab = '0';
+      if (gaCodelab) {
+        ga('create', gaCodelab, 'auto', {name: 'codelab'});
+      }
+
+      var gaView;
+      var parts = location.search.substring(1).split('&');
+      for (var i = 0; i < parts.length; i++) {
+        var param = parts[i].split('=');
+        if (param[0] === 'viewga') {
+          gaView = param[1];
+          break;
+        }
+      }
+      if (gaView && gaView !== gaCodelab) {
+        ga('create', gaView, 'auto', {name: 'view'});
+      }
+    })();
+  </script>
+
+</body>
+</html>
