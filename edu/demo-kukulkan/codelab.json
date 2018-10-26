@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "source": "demo-kukulkan.md",
+  "format": "html",
+  "prefix": "../../",
+  "mainga": "UA-49880327-14",
+  "updated": "2018-10-26T02:19:45-05:00",
+  "id": "demo-kukulkan",
+  "duration": 0,
+  "title": "Demo con Kukulkan",
+  "author": "Kukulkan Team",
+  "summary": "Demo para utlizar Kukulkan",
+  "theme": "",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "documentation"
+  ],
+  "tags": [
+    "js"
+  ],
+  "ga": "0",
+  "url": "demo-kukulkan"
+}
