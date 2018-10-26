@@ -1,0 +1,330 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Tutorial para el Uso de Kukulkan</title>
+  <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../elements/codelab.html">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <style is="custom-style">
+    body {
+      font-family: "Roboto",sans-serif;
+      background: var(--google-codelab-background, #F8F9FA);
+    }
+  </style>
+  
+</head>
+<body unresolved class="fullbleed">
+
+  <google-codelab title="Tutorial para el Uso de Kukulkan"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Requerimientos" duration="15">
+        <aside class="special"><p>This will appear in a positive info box.</p>
+</aside>
+<aside class="warning"><p>This will appear in a negative info box.</p>
+</aside>
+<p><a href="https://www.google.com" target="_blank">Download SDK</a></p>
+<p><a href="https://github.com/kukulkan-project/kukulkan-vscode-extension/releases" target="_blank">Download Kukulkan VS Code Extension</a></p>
+<ul>
+<li><a href="https://github.com/kukulkan-project/kukulkan-vscode-extension/releases" target="_blank">Kukulkan VS Code Extension</a></li>
+<li>Kukulkan Shell (Instalador <code>.deb</code> o ejecutable <code>.exe</code>)</li>
+<li>Herramienta JPS (Añadir al PATH <code>{PATH_DE_JDK}/bin</code>)</li>
+<li><a href="https://git-scm.com/downloads" target="_blank">Git</a></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Kukulkan Shell" duration="2">
+        <h2>Comandos básicos</h2>
+<ul>
+<li><code>help</code>: Display help about available commands.</li>
+<li><code>clear</code>: Clear the shell screen</li>
+<li><code>stacktrace</code>: Display the full stacktrace of the last error</li>
+<li><code>stop-process</code>: Detiene un proceso Java</li>
+</ul>
+<p><strong>Nota</strong>:<br>Kukulkan Shell cuenta con función de autocompletado de los comandos al presionar la tecla <strong>TAB</strong>.<br>Por ejemplo, <code>sta</code> + <code>TAB</code> completará el comando <code>stacktrace</code> en la línea de comandos.</p>
+<h2>Comandos de navegación</h2>
+<ul>
+<li><code>pwd</code>: Show the current direction</li>
+<li><code>cd</code>: Change directory</li>
+<li><code>dir</code>, <code>ll</code>, <code>ls</code>: List the currents files</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Generación de proyecto" duration="3">
+        <pre><code>NAME
+    create-project - Generate a Project from an Archetype Catalog
+
+SYNOPSYS
+    create-project [--app-name] string  [--packaging] string  [[--database-type] database-type]  
+
+OPTIONS
+    --app-name  string
+
+        [Mandatory]
+        [no puede ser null]
+
+    --packaging  string
+
+        [Mandatory]
+        [no puede ser null]
+
+    --database-type  database-type
+
+        [Optional, default = NO_SQL_MONGODB]
+</code></pre>
+<p>Ejemplo:</p>
+<pre><code>create-project --app-name demo  --packaging mx.infotec.dads.demo --database-type SQL_MYSQL
+</code></pre>
+<p><strong>Nota</strong>: Si se encuentra <strong>git</strong> instalado se realizan las siguientes acciones luego de crear el nuevo proyecto:</p>
+<ul>
+<li>Crea un nuevo repositorio</li>
+<li>Añade todos los archivos creados al <em>stage</em></li>
+<li>Se hace un commit al repositoro</li>
+<li>Se crea la rama <code>develop</code> y se mueve hacia dicha rama</li>
+</ul>
+<h2>Prompt</h2>
+<p>Cuando se navega a un directorio que contiene a la raíz de un proyecto generado con Kukulkán, el prompt se muestra diferente:</p>
+<pre><code>kukulkan @app @git/develop
+</code></pre>
+<ul>
+<li><code>@app</code>: indica que el directorio contiene un proyecto generado con Kukulkán</li>
+<li><code>@git/develop</code>: indica que el proyecto utiliza git como Software de Control de Versiones, seguido del nombre de la rama en que se encuentra el proyecto.</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Configuración del proyecto" duration="2">
+        <pre><code>NAME
+    config - Configurate the project
+
+SYNOPSYS
+    config [[--type] configuration-type]  
+
+OPTIONS
+    --type  configuration-type
+
+        [Optional, default = FRONT_END]
+</code></pre>
+<p>Este comando es un <em>wrapper</em> de los siguientes comandos:</p>
+<ul>
+<li><code>yarn install</code>: Instala las dependencias Node</li>
+<li><code>bower install</code>: Instala las dependencias Bower</li>
+<li><code>gulp</code>: Inyecta dependencias al <code>index.html</code></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ejecutando el proyecto" duration="2">
+        <pre><code>NAME
+    run - Run a Spring-Boot App
+
+SYNOPSYS
+    run [[--profile] profile]  
+
+OPTIONS
+    --profile  profile
+
+        [Optional, default = DEV]
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Kukulkan DSL" duration="5">
+        <p>El DSL de Kukulkan se utiliza para definir un modelo de dominio, con entidades y relaciones.</p>
+<h2>Declaración de entidades</h2>
+<p>Sintaxis:</p>
+<pre><code>entity &lt;entity-name&gt; [entity-table-name] {
+    [&lt;attribute-name&gt; : &lt;data-type&gt; [&lt;validator&gt;*]
+}
+</code></pre>
+<h3>Declarar una entidad sin atributos</h3>
+<pre><code>entity Person
+</code></pre>
+<h3>Declarar una entidad con atributos</h3>
+<pre><code>entity Person {
+    name: String required,
+    lastName: String
+}
+</code></pre>
+<p>Todas las entidades contienen un atributo <code>id</code> por defecto.</p>
+<p>Tipos de dato:</p>
+<ul>
+<li>String</li>
+<li>Integer</li>
+<li>Long</li>
+<li>BigDecimal</li>
+<li>Float</li>
+<li>Double</li>
+<li>Boolean</li>
+<li>Date</li>
+<li>LocalDate</li>
+<li>ZonedDateTime</li>
+<li>Instant</li>
+<li>Blob</li>
+<li>AnyBlob</li>
+<li>ImageBlob</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Relaciones" duration="3">
+        <p><a href="https://github.com/kukulkan-project/kukulkan-generator-angularjs/wiki/JPA-Relationships" target="_blank">Guía de relaciones con JPA</a></p>
+<p>Sintaxis:</p>
+<pre><code>entity &lt;entity-name&gt; (entity-table-name) {
+    &lt;relationship-type&gt; [to-source-attribute-name] &lt;attribute-name&gt; : &lt;entity&gt;
+}
+</code></pre>
+<p>Tipos de relación:</p>
+<ul>
+<li>OneToOne</li>
+<li>OneToMany</li>
+<li>ManyToOne</li>
+<li>ManyToMany</li>
+</ul>
+<h2>Relación Unidireccional</h2>
+<pre><code>entity Person {
+    name: String,
+    OneToOne address: Address
+}
+entity Address {
+    street: String
+}
+</code></pre>
+<h2>Relación Bidireccional</h2>
+<pre><code>entity Person {
+    name: String,
+    OneToOne (person) address: Address
+}
+entity Address {
+    street: String required
+}
+</code></pre>
+<p>Nótese que en las relaciones bidireccionales se define un elemento extra <code>(person)</code>, esto significa que:</p>
+<ul>
+<li>en la entidad <code>Person</code> se creará un atributo del tipo <code>Address</code>.</li>
+<li>en la entidad <code>Address</code> se creará un atributo del tipo <code>Person</code>.</li>
+</ul>
+<h2>Display field</h2>
+<p>El <strong>display field</strong> es el atributo de la entidad que se muestra en la interfaz gráfica cuando es referenciada mediante una relación con otra entidad. Por defecto es el atributo <code>id</code> pero se puede cambiar usando el símbolo de flecha <code>-&gt;</code> en la declaración de la entidad. Por ejemplo:</p>
+<pre><code>entity Person {
+    name: String,
+    OneToOne address: Address
+}
+entity Address {
+    -&gt; street: String required
+}
+</code></pre>
+<p>Se usará <code>street</code>, en lugar de <code>id</code>, como <strong>display field</strong> en el formulario de creación/edición de la entidad Person.</p>
+<h2>Relación con CoreUser</h2>
+<p>En el DSL de Kukulkan, <code>CoreUser</code> es una palabra reservada para representar a la entidad <code>User</code> que se crea junto con el arquetipo. Esta entidad se puede asociar con cualquier otra definida por el usuario pero solo tiene soporte para los tipos de relación unidireccional <code>OneToOne</code>, <code>ManyToOne</code> y <code>ManyToMany</code>. Por ejemplo:</p>
+<pre><code>entity Person {
+    OneToOne user: CoreUser
+}
+</code></pre>
+<p>Nótese que no es necesario declarar ni importar a <code>CoreUser</code> en el modelo de dominio.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Generación de CRUD" duration="2">
+        <pre><code>NAME
+    add-entities-from-language - Generate all the entities that come from a file with .3k or .kukulkan extension
+
+SYNOPSYS
+    add-entities-from-language [--file-name] string  [[--exclude-layers] string]  
+
+OPTIONS
+    --file-name  string
+
+        [Mandatory]
+
+    --exclude-layers  string
+
+        [Optional, default = @all]
+</code></pre>
+<p><strong>Nota</strong>:<br>Luego de la adición de entidades al proyecto Kukulkán Shell ejecuta el comando <code>config --type FRONT_END</code> para asegurarse que los archivos generados en el <em>front-end</em> sean inyectados al <code>index.html</code>, entre otras acciones.</p>
+<h2>Cliente (Front-end, AngularJS)</h2>
+<table>
+<tr></tr>
+<tr><td colspan="1" rowspan="1"><p>app/entities/person/person.service.js</p>
+</td><td colspan="1" rowspan="1"><p>Este servicio consume la API REST del servidor</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>app/entities/person/person.controller.js</p>
+</td><td colspan="1" rowspan="1"><p>Controlador: está enlazado a la vista</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>app/entities/person/persons.html</p>
+</td><td colspan="1" rowspan="1"><p>Vista: Muestra todas las personas existentes</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>app/entities/person/person.state.js</p>
+</td><td colspan="1" rowspan="1"><p>Estado (o ruta): Define el estado ‘person&#39; y la url de la vista</p>
+</td></tr>
+</table>
+<h2>Servidor (Back-end, Spring Boot)</h2>
+<table>
+<tr></tr>
+<tr><td colspan="1" rowspan="1"><p>mx.infotec.dads.demo.domain.Person</p>
+</td><td colspan="1" rowspan="1"><p>Entidad de dominio (POJO)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>mx.infotec.dads.demo.repository.PersonRepository</p>
+</td><td colspan="1" rowspan="1"><p>Aquí van los queries a la BD</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>mx.infotec.dads.demo.service.PersonService</p>
+</td><td colspan="1" rowspan="1"><p>Aquí se definen los métodos del servicio</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>mx.infotec.dads.demo.service.impl.PersonServiceImpl</p>
+</td><td colspan="1" rowspan="1"><p>Implementación de la interfaz PersonService (utiliza a PersonRepository)</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>mx.infotec.dads.demo.web.rest.PersonResource</p>
+</td><td colspan="1" rowspan="1"><p>Servicio REST (utiliza a PersonService)</p>
+</td></tr>
+</table>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-49880327-14', 'auto');
+
+    (function() {
+      var gaCodelab = '0';
+      if (gaCodelab) {
+        ga('create', gaCodelab, 'auto', {name: 'codelab'});
+      }
+
+      var gaView;
+      var parts = location.search.substring(1).split('&');
+      for (var i = 0; i < parts.length; i++) {
+        var param = parts[i].split('=');
+        if (param[0] === 'viewga') {
+          gaView = param[1];
+          break;
+        }
+      }
+      if (gaView && gaView !== gaCodelab) {
+        ga('create', gaView, 'auto', {name: 'view'});
+      }
+    })();
+  </script>
+
+</body>
+</html>
