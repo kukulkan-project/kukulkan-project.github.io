@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
-  <title>Tutorial para el Uso de Kukulkan</title>
+  <title>Despliegue de un proyecto con DOCKERS</title>
   <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <link rel="import" href="../../elements/codelab.html">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
@@ -20,273 +20,109 @@
 </head>
 <body unresolved class="fullbleed">
 
-  <google-codelab title="Tutorial para el Uso de Kukulkan"
+  <google-codelab title="Despliegue de un proyecto con DOCKERS"
                   environment="web"
                   feedback-link="">
     
       <google-codelab-step label="Requerimientos" duration="15">
-        <p><a href="https://github.com/kukulkan-project/kukulkan-vscode-extension/releases" target="_blank">Download Kukulkan VS Code Extension</a></p>
+        <aside class="special"><p>Para seguir este tutorial, se deberán de tener instalados los comandos <code>docker</code> y <code>docker-compose</code>.</p>
+</aside>
+<p>Dependiendo del sistema operativo que se esté utlizando, se puede consultar la guía de instalación de <code>Docker</code> en alguno de los siguientes Links:</p>
 <ul>
-<li><a href="https://github.com/kukulkan-project/kukulkan-vscode-extension/releases" target="_blank">Kukulkan VS Code Extension</a></li>
-<li>Kukulkan Shell (Instalador <code>.deb</code> o ejecutable <code>.exe</code>)</li>
-<li>Herramienta JPS (Añadir al PATH <code>{PATH_DE_JDK}/bin</code>)</li>
-<li><a href="https://git-scm.com/downloads" target="_blank">Git</a></li>
+<li><a href="https://runnable.com/docker/install-docker-on-macos" target="_blank">Instalar Docker para macOs</a></li>
+<li><a href="https://runnable.com/docker/install-docker-on-linux" target="_blank">Instalar Docker para windos-10</a></li>
+<li><a href="https://runnable.com/docker/install-docker-on-windows-10" target="_blank">Instalar Docker para windos-10</a></li>
 </ul>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Kukulkan Shell" duration="2">
-        <h2>Comandos básicos</h2>
+<p>Para la instalación de <code>Docker Compose</code>, se puede seguir el siguiente link:</p>
 <ul>
-<li><code>help</code>: Display help about available commands.</li>
-<li><code>clear</code>: Clear the shell screen</li>
-<li><code>stacktrace</code>: Display the full stacktrace of the last error</li>
-<li><code>stop-process</code>: Detiene un proceso Java</li>
+<li><a href="https://docs.docker.com/compose/install/" target="_blank">Instalar Docker Compose</a></li>
 </ul>
-<p><strong>Nota</strong>:<br>Kukulkan Shell cuenta con función de autocompletado de los comandos al presionar la tecla <strong>TAB</strong>.<br>Por ejemplo, <code>sta</code> + <code>TAB</code> completará el comando <code>stacktrace</code> en la línea de comandos.</p>
-<h2>Comandos de navegación</h2>
-<ul>
-<li><code>pwd</code>: Show the current direction</li>
-<li><code>cd</code>: Change directory</li>
-<li><code>dir</code>, <code>ll</code>, <code>ls</code>: List the currents files</li>
-</ul>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Generación de proyecto" duration="3">
-        <pre><code>NAME
-    create-project - Generate a Project from an Archetype Catalog
-
-SYNOPSYS
-    create-project [--app-name] string  [--packaging] string  [[--database-type] database-type]  
-
-OPTIONS
-    --app-name  string
-
-        [Mandatory]
-        [no puede ser null]
-
-    --packaging  string
-
-        [Mandatory]
-        [no puede ser null]
-
-    --database-type  database-type
-
-        [Optional, default = NO_SQL_MONGODB]
-</code></pre>
-<p>Ejemplo:</p>
-<pre><code>create-project --app-name demo  --packaging mx.infotec.dads.demo --database-type SQL_MYSQL
-</code></pre>
-<p><strong>Nota</strong>: Si se encuentra <strong>git</strong> instalado se realizan las siguientes acciones luego de crear el nuevo proyecto:</p>
-<ul>
-<li>Crea un nuevo repositorio</li>
-<li>Añade todos los archivos creados al <em>stage</em></li>
-<li>Se hace un commit al repositoro</li>
-<li>Se crea la rama <code>develop</code> y se mueve hacia dicha rama</li>
-</ul>
-<h2>Prompt</h2>
-<p>Cuando se navega a un directorio que contiene a la raíz de un proyecto generado con Kukulkán, el prompt se muestra diferente:</p>
-<pre><code>kukulkan @app @git/develop
-</code></pre>
-<ul>
-<li><code>@app</code>: indica que el directorio contiene un proyecto generado con Kukulkán</li>
-<li><code>@git/develop</code>: indica que el proyecto utiliza git como Software de Control de Versiones, seguido del nombre de la rama en que se encuentra el proyecto.</li>
-</ul>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Configuración del proyecto" duration="2">
-        <pre><code>NAME
-    config - Configurate the project
-
-SYNOPSYS
-    config [[--type] configuration-type]  
-
-OPTIONS
-    --type  configuration-type
-
-        [Optional, default = FRONT_END]
-</code></pre>
-<p>Este comando es un <em>wrapper</em> de los siguientes comandos:</p>
-<ul>
-<li><code>yarn install</code>: Instala las dependencias Node</li>
-<li><code>bower install</code>: Instala las dependencias Bower</li>
-<li><code>gulp</code>: Inyecta dependencias al <code>index.html</code></li>
-</ul>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Ejecutando el proyecto" duration="2">
-        <pre><code>NAME
-    run - Run a Spring-Boot App
-
-SYNOPSYS
-    run [[--profile] profile]  
-
-OPTIONS
-    --profile  profile
-
-        [Optional, default = DEV]
+<p>Para verificar que la instalación de <code>docker</code> se encuentra correcta, ejecute el siguiente comando</p>
+<pre><code>$ sudo docker run hello-world
 </code></pre>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Kukulkan DSL" duration="5">
-        <p>El DSL de Kukulkan se utiliza para definir un modelo de dominio, con entidades y relaciones.</p>
-<h2>Declaración de entidades</h2>
-<p>Sintaxis:</p>
-<pre><code>entity &lt;entity-name&gt; [entity-table-name] {
-    [&lt;attribute-name&gt; : &lt;data-type&gt; [&lt;validator&gt;*]
-}
+      <google-codelab-step label="Descargar Archivo YAML" duration="3">
+        <p>A continuación, se va a utilizar una imagen <code>docker</code>, que ha sido construida a partir de un proyecto generado con la herramienta <code>kukulkan</code>, para levantar un servicio web. Para tal finalidad, deberá de guardar el contenido siguiente en un archivo llamado <code>app.yml</code>:</p>
+<pre><code>version: &#39;2&#39;
+services:
+    sfp-app:
+        image: danimaniarqsoft/sfp:latest
+        environment:
+            - SPRING_PROFILES_ACTIVE=dev,swagger
+            - APP_SLEEP=10
+        ports:
+            - 8080:8080
 </code></pre>
-<h3>Declarar una entidad sin atributos</h3>
-<pre><code>entity Person
-</code></pre>
-<h3>Declarar una entidad con atributos</h3>
-<pre><code>entity Person {
-    name: String required,
-    lastName: String
-}
-</code></pre>
-<p>Todas las entidades contienen un atributo <code>id</code> por defecto.</p>
-<p>Tipos de dato:</p>
-<ul>
-<li>String</li>
-<li>Integer</li>
-<li>Long</li>
-<li>BigDecimal</li>
-<li>Float</li>
-<li>Double</li>
-<li>Boolean</li>
-<li>Date</li>
-<li>LocalDate</li>
-<li>ZonedDateTime</li>
-<li>Instant</li>
-<li>Blob</li>
-<li>AnyBlob</li>
-<li>ImageBlob</li>
-</ul>
+<p>el archivo deberá de quedar en una ruta que le permita a ustede administrar sus imagenes docker; por ejemplo, <code>[HOME]/apps/docker/app.yml</code></p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Relaciones" duration="3">
-        <p><a href="https://github.com/kukulkan-project/kukulkan-generator-angularjs/wiki/JPA-Relationships" target="_blank">Guía de relaciones con JPA</a></p>
-<p>Sintaxis:</p>
-<pre><code>entity &lt;entity-name&gt; (entity-table-name) {
-    &lt;relationship-type&gt; [to-source-attribute-name] &lt;attribute-name&gt; : &lt;entity&gt;
-}
+      <google-codelab-step label="Levantar Servicio" duration="2">
+        <p>A continuación, se deberá de cambiar a la carpeta en donde guardo el archivo <code>app.yml</code> y ejecutar el siguiente comando:</p>
+<pre><code>$ docker-compose -f app.yml up -d
 </code></pre>
-<p>Tipos de relación:</p>
-<ul>
-<li>OneToOne</li>
-<li>OneToMany</li>
-<li>ManyToOne</li>
-<li>ManyToMany</li>
-</ul>
-<h2>Relación Unidireccional</h2>
-<pre><code>entity Person {
-    name: String,
-    OneToOne address: Address
-}
-entity Address {
-    street: String
-}
+<p>En la consola, deberá de ver algo parecido a lo siguiente:</p>
+<pre><code>sfp-app_1  |                                                  
+sfp-app_1  |          ,---.           ,---.                   
+sfp-app_1  |  ,---.  /  .-&#39;  ,---.   /  O  \   ,---.   ,---.  
+sfp-app_1  | (  .-&#39;  |  `-, | .-. | |  .-.  | | .-. | | .-. | 
+sfp-app_1  | .-&#39;  `) |  .-&#39; | &#39;-&#39; &#39; |  | |  | | &#39;-&#39; &#39; | &#39;-&#39; &#39; 
+sfp-app_1  | `----&#39;  `--&#39;   |  |-&#39;  `--&#39; `--&#39; |  |-&#39;  |  |-&#39;  
+sfp-app_1  |                `--&#39;              `--&#39;    `--&#39;    
+sfp-app_1  | 
+sfp-app_1  | 2018-10-26 17:37:13.139  INFO 1 --- [           main] mx.dads.infotec.SfpApp                   : Starting SfpApp on f1be0839403b with PID 1 (/app.war started by root in /)
+sfp-app_1  | 2018-10-26 17:37:13.143 DEBUG 1 --- [           main] mx.dads.infotec.SfpApp                   : Running with Spring Boot v1.5.9.RELEASE, Spring v4.3.13.RELEASE
+sfp-app_1  | 2018-10-26 17:37:13.144  INFO 1 --- [           main] mx.dads.infotec.SfpApp                   : The following profiles are active: dev,swagger
+sfp-app_1  | 2018-10-26 17:37:13.460 DEBUG 1 --- [kground-preinit] org.jboss.logging                        : Logging Provider: org.jboss.logging.Slf4jLoggerProvider found via system property
+sfp-app_1  | 2018-10-26 17:37:15.952 DEBUG 1 --- [           main] m.d.infotec.config.AsyncConfiguration    : Creating Async Task Executor
+sfp-app_1  | 2018-10-26 17:37:16.766 DEBUG 1 --- [           main] c.ehcache.core.Ehcache-usersByLogin      : Initialize successful.
+sfp-app_1  | 2018-10-26 17:37:16.780 DEBUG 1 --- [           main] c.ehcache.core.Ehcache-usersByEmail      : Initialize successful.
+sfp-app_1  | 2018-10-26 17:37:16.956 DEBUG 1 --- [           main] m.d.infotec.config.MetricsConfiguration  : Registering JVM gauges
+sfp-app_1  | 2018-10-26 17:37:16.973 DEBUG 1 --- [           main] m.d.infotec.config.MetricsConfiguration  : Monitoring the datasource
+sfp-app_1  | 2018-10-26 17:37:16.973 DEBUG 1 --- [           main] m.d.infotec.config.MetricsConfiguration  : Initializing Metrics JMX reporting
+sfp-app_1  | 2018-10-26 17:37:17.713 DEBUG 1 --- [           main] mx.dads.infotec.config.WebConfigurer     : Registering CORS filter
+sfp-app_1  | 2018-10-26 17:37:17.856  INFO 1 --- [           main] mx.dads.infotec.config.WebConfigurer     : Web application configuration, using profiles: dev
+sfp-app_1  | 2018-10-26 17:37:17.856 DEBUG 1 --- [           main] mx.dads.infotec.config.WebConfigurer     : Initializing Metrics registries
+sfp-app_1  | 2018-10-26 17:37:17.859 DEBUG 1 --- [           main] mx.dads.infotec.config.WebConfigurer     : Registering Metrics Filter
+sfp-app_1  | 2018-10-26 17:37:17.860 DEBUG 1 --- [           main] mx.dads.infotec.config.WebConfigurer     : Registering Metrics Servlet
+sfp-app_1  | 2018-10-26 17:37:17.862 DEBUG 1 --- [           main] mx.dads.infotec.config.WebConfigurer     : Initialize H2 console
+sfp-app_1  | 2018-10-26 17:37:17.862  INFO 1 --- [           main] mx.dads.infotec.config.WebConfigurer     : Web application fully configured
+sfp-app_1  | 2018-10-26 17:37:18.625 DEBUG 1 --- [           main] m.d.i.config.DatabaseConfiguration       : Configuring Liquibase
+sfp-app_1  | 2018-10-26 17:37:18.634  WARN 1 --- [ sfp-Executor-1] i.g.j.c.liquibase.AsyncSpringLiquibase   : Starting Liquibase asynchronously, your database might not be ready at startup!
+sfp-app_1  | 2018-10-26 17:37:20.267 DEBUG 1 --- [ sfp-Executor-1] i.g.j.c.liquibase.AsyncSpringLiquibase   : Liquibase has updated your database in 1632 ms
+sfp-app_1  | 2018-10-26 17:37:24.794 DEBUG 1 --- [           main] i.g.j.c.apidoc.SwaggerConfiguration      : Starting Swagger
+sfp-app_1  | 2018-10-26 17:37:24.804 DEBUG 1 --- [           main] i.g.j.c.apidoc.SwaggerConfiguration      : Started Swagger in 9 ms
+sfp-app_1  | 2018-10-26 17:37:26.051  INFO 1 --- [           main] mx.dads.infotec.SfpApp                   : Started SfpApp in 13.977 seconds (JVM running for 14.585)
+sfp-app_1  | 2018-10-26 17:37:26.051  INFO 1 --- [           main] mx.dads.infotec.SfpApp                   : 
+sfp-app_1  | ----------------------------------------------------------
+sfp-app_1  | 	Application &#39;sfp&#39; is running! Access URLs:
+sfp-app_1  | 	Local: 		http://localhost:8080
+sfp-app_1  | 	External: 	http://172.20.0.2:8080
+sfp-app_1  | 	Profile(s): 	[dev, swagger]
+sfp-app_1  | ----------------------------------------------------------
 </code></pre>
-<h2>Relación Bidireccional</h2>
-<pre><code>entity Person {
-    name: String,
-    OneToOne (person) address: Address
-}
-entity Address {
-    street: String required
-}
-</code></pre>
-<p>Nótese que en las relaciones bidireccionales se define un elemento extra <code>(person)</code>, esto significa que:</p>
-<ul>
-<li>en la entidad <code>Person</code> se creará un atributo del tipo <code>Address</code>.</li>
-<li>en la entidad <code>Address</code> se creará un atributo del tipo <code>Person</code>.</li>
-</ul>
-<h2>Display field</h2>
-<p>El <strong>display field</strong> es el atributo de la entidad que se muestra en la interfaz gráfica cuando es referenciada mediante una relación con otra entidad. Por defecto es el atributo <code>id</code> pero se puede cambiar usando el símbolo de flecha <code>-&gt;</code> en la declaración de la entidad. Por ejemplo:</p>
-<pre><code>entity Person {
-    name: String,
-    OneToOne address: Address
-}
-entity Address {
-    -&gt; street: String required
-}
-</code></pre>
-<p>Se usará <code>street</code>, en lugar de <code>id</code>, como <strong>display field</strong> en el formulario de creación/edición de la entidad Person.</p>
-<h2>Relación con CoreUser</h2>
-<p>En el DSL de Kukulkan, <code>CoreUser</code> es una palabra reservada para representar a la entidad <code>User</code> que se crea junto con el arquetipo. Esta entidad se puede asociar con cualquier otra definida por el usuario pero solo tiene soporte para los tipos de relación unidireccional <code>OneToOne</code>, <code>ManyToOne</code> y <code>ManyToMany</code>. Por ejemplo:</p>
-<pre><code>entity Person {
-    OneToOne user: CoreUser
-}
-</code></pre>
-<p>Nótese que no es necesario declarar ni importar a <code>CoreUser</code> en el modelo de dominio.</p>
+<p><strong>Nota</strong>:<br>Para tener una mejor administración de sus servicios docker, revisar la documentación oficial en <a href="https://docker-curriculum.com/" target="_blank">Docker for beginners</a></p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Generación de CRUD" duration="2">
-        <pre><code>NAME
-    add-entities-from-language - Generate all the entities that come from a file with .3k or .kukulkan extension
+      <google-codelab-step label="Visualización del Aplicativo" duration="1">
+        <p>El aplicativo se podrá consultar en la url <a href="http://localhost:8080" target="_blank">http://localhost:8080</a> de manera local, en caso de que se encuentre el servidor publicando, entonces lo podrá hacer a través de la url <a href="http:[IP_PUBLICA:8080]" target="_blank">http:[IP_PUBLICA:8080]</a>. El resultado será el siguiente:</p>
+<p><img alt="Proyecto kukulkan" title="Proyecto en Ejecución" src="img/b261404e5d811671.png"></p>
 
-SYNOPSYS
-    add-entities-from-language [--file-name] string  [[--exclude-layers] string]  
 
-OPTIONS
-    --file-name  string
-
-        [Mandatory]
-
-    --exclude-layers  string
-
-        [Optional, default = @all]
+      </google-codelab-step>
+    
+      <google-codelab-step label="Bajar el Servicio" duration="5">
+        <p>Para bajar el servicio que se ha levantado, se debe utilizar el siguiente comando:</p>
+<pre><code>$ docker-compose -f app.yml stop
 </code></pre>
-<p><strong>Nota</strong>:<br>Luego de la adición de entidades al proyecto Kukulkán Shell ejecuta el comando <code>config --type FRONT_END</code> para asegurarse que los archivos generados en el <em>front-end</em> sean inyectados al <code>index.html</code>, entre otras acciones.</p>
-<h2>Cliente (Front-end, AngularJS)</h2>
-<table>
-<tr></tr>
-<tr><td colspan="1" rowspan="1"><p>app/entities/person/person.service.js</p>
-</td><td colspan="1" rowspan="1"><p>Este servicio consume la API REST del servidor</p>
-</td></tr>
-<tr><td colspan="1" rowspan="1"><p>app/entities/person/person.controller.js</p>
-</td><td colspan="1" rowspan="1"><p>Controlador: está enlazado a la vista</p>
-</td></tr>
-<tr><td colspan="1" rowspan="1"><p>app/entities/person/persons.html</p>
-</td><td colspan="1" rowspan="1"><p>Vista: Muestra todas las personas existentes</p>
-</td></tr>
-<tr><td colspan="1" rowspan="1"><p>app/entities/person/person.state.js</p>
-</td><td colspan="1" rowspan="1"><p>Estado (o ruta): Define el estado ‘person&#39; y la url de la vista</p>
-</td></tr>
-</table>
-<h2>Servidor (Back-end, Spring Boot)</h2>
-<table>
-<tr></tr>
-<tr><td colspan="1" rowspan="1"><p>mx.infotec.dads.demo.domain.Person</p>
-</td><td colspan="1" rowspan="1"><p>Entidad de dominio (POJO)</p>
-</td></tr>
-<tr><td colspan="1" rowspan="1"><p>mx.infotec.dads.demo.repository.PersonRepository</p>
-</td><td colspan="1" rowspan="1"><p>Aquí van los queries a la BD</p>
-</td></tr>
-<tr><td colspan="1" rowspan="1"><p>mx.infotec.dads.demo.service.PersonService</p>
-</td><td colspan="1" rowspan="1"><p>Aquí se definen los métodos del servicio</p>
-</td></tr>
-<tr><td colspan="1" rowspan="1"><p>mx.infotec.dads.demo.service.impl.PersonServiceImpl</p>
-</td><td colspan="1" rowspan="1"><p>Implementación de la interfaz PersonService (utiliza a PersonRepository)</p>
-</td></tr>
-<tr><td colspan="1" rowspan="1"><p>mx.infotec.dads.demo.web.rest.PersonResource</p>
-</td><td colspan="1" rowspan="1"><p>Servicio REST (utiliza a PersonService)</p>
-</td></tr>
-</table>
+<aside class="special"><p>Para ejecutar el comando anterior, debe hacerlo en la ruta en donde se encuentra el archivo <code>app.yml</code></p>
+</aside>
 
 
       </google-codelab-step>
