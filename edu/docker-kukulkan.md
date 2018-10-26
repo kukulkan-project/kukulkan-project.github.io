@@ -18,7 +18,7 @@ Positive
 Dependiendo del sistema operativo que se esté utlizando, se puede consultar la guía de instalación de `Docker` en alguno de los siguientes Links:
 
 - [Instalar Docker para macOs](https://runnable.com/docker/install-docker-on-macos)
-- [Instalar Docker para windos-10](https://runnable.com/docker/install-docker-on-linux)
+- [Instalar Docker para linux](https://runnable.com/docker/install-docker-on-linux)
 - [Instalar Docker para windos-10](https://runnable.com/docker/install-docker-on-windows-10)
 
 Para la instalación de `Docker Compose`, se puede seguir el siguiente link:
