@@ -518,7 +518,7 @@ code, pre, tt {
     display: block; } }
 header {
   padding: 16px 0 10px 0;
-  background: #0c92f1;
+  background: #134566;
   color: #fff; }
   header form {
     position: relative; }
@@ -534,7 +534,7 @@ header {
   header .top-bar .logo svg {
     fill: #fff;
     width: 100%;
-    height: 46px;
+    height: 90px;
     min-width: 100px; }
   header .top-bar form svg {
     fill: #eee; }
