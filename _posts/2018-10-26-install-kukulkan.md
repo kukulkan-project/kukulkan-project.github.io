@@ -3,7 +3,7 @@ date: 2018-10-26
 title: Instalación de Kukulkan
 description: Instalación y Configuración de kukulkan
 categories:
-  - configuración
+  - instalación
 resources:
   - name: Ver el Tutorial
     link: ../../edu/install-kukulkan

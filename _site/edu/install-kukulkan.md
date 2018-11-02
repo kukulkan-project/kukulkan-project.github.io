@@ -1,7 +1,7 @@
 author: Kukulkan Team
 summary: Demo para utlizar Kukulkan
 id: install-kukulkan
-categories: documentation
+categories: instalacion
 environments: js
 status: draft
 analytics account: 0

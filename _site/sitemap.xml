@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/inicio/demo-kukulkan/</loc>
+<loc>http://localhost:4000/laboratorio/demo-kukulkan/</loc>
 <lastmod>2018-10-26T00:00:00+00:00</lastmod>
 </url>
 <url>
@@ -9,7 +9,7 @@
 <lastmod>2018-10-26T00:00:00+00:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/configuraci%C3%B3n/install-kukulkan/</loc>
+<loc>http://localhost:4000/instalaci%C3%B3n/install-kukulkan/</loc>
 <lastmod>2018-10-26T00:00:00+00:00</lastmod>
 </url>
 <url>
@@ -33,13 +33,13 @@
 <loc>http://localhost:4000/videos/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/category/inicio/</loc>
+<loc>http://localhost:4000/category/laboratorio/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/category/despliegue/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/category/configuraci%C3%B3n/</loc>
+<loc>http://localhost:4000/category/instalaci%C3%B3n/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/category/lineamientos/</loc>

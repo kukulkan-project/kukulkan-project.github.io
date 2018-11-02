@@ -1,9 +1,9 @@
 ---
 date: 2018-10-26
-title: Proyecto Demo
+title: Sito Web con Chat bot
 description: Tutorial para crear un proyecto con Kukulkan
 categories:
-  - inicio
+  - laboratorio
 resources:
   - name: Ver el Tutorial
     link: ../../edu/demo-kukulkan
