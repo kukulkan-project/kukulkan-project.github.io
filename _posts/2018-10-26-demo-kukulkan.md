@@ -1,6 +1,6 @@
 ---
 date: 2018-10-26
-title: Sito Web con Chat bot
+title: Sitio Web con Chat bot
 description: Tutorial para crear un proyecto con Kukulkan
 categories:
   - laboratorio
