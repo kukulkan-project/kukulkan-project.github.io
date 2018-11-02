@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "source": "install-java8-on-centos.md",
+  "format": "html",
+  "prefix": "../../",
+  "mainga": "UA-49880327-14",
+  "updated": "2018-11-01T23:27:30-06:00",
+  "id": "install-java8-on-centos",
+  "duration": 0,
+  "title": "Instalación de Java 8 en Centos 7",
+  "author": "Kukulkan Team",
+  "summary": "Instalación de Java 8 en Centos 7",
+  "theme": "",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "instalacion"
+  ],
+  "tags": [
+    "js"
+  ],
+  "ga": "0",
+  "url": "install-java8-on-centos"
+}

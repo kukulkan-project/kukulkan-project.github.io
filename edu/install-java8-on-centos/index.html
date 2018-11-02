@@ -1,0 +1,173 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Instalación de Java 8 en Centos 7</title>
+  <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../elements/codelab.html">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <style is="custom-style">
+    body {
+      font-family: "Roboto",sans-serif;
+      background: var(--google-codelab-background, #F8F9FA);
+    }
+  </style>
+  
+</head>
+<body unresolved class="fullbleed">
+
+  <google-codelab title="Instalación de Java 8 en Centos 7"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Prerequisitos" duration="0">
+        <p>Positive<br>:</p>
+<ol type="1">
+<li>Centos 7 64Bits</li>
+<li>Acceso como <em>superusuario</em></li>
+<li>Acceso remoto por medio de <em>ssh</em></li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Actualización de paquetes" duration="0">
+        <pre><code>sudo yum -y update
+sudo yum -y install wget emacs-nox vim
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Corrección del 
+locale" duration="0">
+        <p>En caso de que al acceder por <em>ssh</em> a la máquina virtual marque un error con el <em>locale</em>, se puede corregir agregando dos líneas al archivo <code>/etc/locale.conf</code></p>
+<pre><code>LANG=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+</code></pre>
+<p>Dependiendo del idioma de instalación, puede que lo más correcto sea <code>LANG=es_MX.UTF-8</code> y <code>LC_ALL=es_MX.UTF-8</code>.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Instalación de Java" duration="0">
+        <p>Descargar el <em>rpm</em> de Java desde la página de Oracle</p>
+<pre><code>wget --no-cookies --no-check-certificate --header &#34;Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie&#34; &#34;http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/jdk-8u151-linux-x64.rpm&#34;
+sudo yum localinstall -y jdk-8u151-linux-x64.rpm
+rm -f jdk-8u151-linux-x64.rpm
+</code></pre>
+<p>Es probable que la versión de Java cambien y el <em>link</em> no funcione en un futuro.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Revisión de ligas" duration="0">
+        <p>Verificar que las existen dos ligas en <code>/usr/java</code>, con el siguiente comando:</p>
+<pre><code>ll /usr/java/
+</code></pre>
+<p>Debería salir algo como lo siguiente:</p>
+<pre><code>[root@localhost ~]# ll /usr/java/
+total 0
+lrwxrwxrwx. 1 root root  16 oct 30 16:10 default -&gt; /usr/java/latest
+drwxr-xr-x. 9 root root 268 oct 30 16:10 jdk1.8.0_151
+lrwxrwxrwx. 1 root root  22 oct 30 16:10 latest -&gt; /usr/java/jdk1.8.0_151
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Corrección de 
+alternatives" duration="0">
+        <p>Verificar que tanto <code>java</code> como <code>javac</code> apunten a la versión Java de Oracle recien instalada, se ejecutan los siguientes comandos:</p>
+<pre><code>java -version
+</code></pre>
+<p>Debería salir:</p>
+<pre><code>[root@localhost ~]# java -version
+java version &#34;1.8.0_151&#34;
+Java(TM) SE Runtime Environment (build 1.8.0_151-b12)
+Java HotSpot(TM) 64-Bit Server VM (build 25.151-b12, mixed mode)
+</code></pre>
+<pre><code>javac -version
+</code></pre>
+<p>Debería salir:</p>
+<pre><code>[root@localhost ~]# javac -version
+javac 1.8.0_151
+</code></pre>
+<p>En caso contrario se deberá corregir por medio del comando <code>alternatives</code>.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Corrección de 
+java" duration="0">
+        <pre><code>sudo alternatives --config java
+</code></pre>
+<p>saldrá un menú como el siguiente:</p>
+<pre><code>Hay 2 programas que proporcionan &#39;java&#39;.
+
+  Selección    Comando
+-----------------------------------------------
+   1           /usr/java/jdk1.8.0_151/jre/bin/java
+*+ 2           java-1.8.0-openjdk.x86_64 (/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.144-0.b01.el7_4.x86_64/jre/bin/java)
+
+Presione Intro para mantener la selección actual[+], o escriba el número de la selección: 1
+</code></pre>
+<p>En este caso se pone 1 y se presiona <code>enter</code>.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Corrección de 
+javac" duration="0">
+        <pre><code>sudo alternatives --config javac
+</code></pre>
+<p>saldrá un menú como el siguiente:</p>
+<pre><code>Hay 2 programas que proporcionan &#39;java&#39;.
+
+  Selección    Comando
+-----------------------------------------------
+*+ 1           /usr/java/jdk1.8.0_151/bin/javac
+
+Presione Intro para mantener la selección actual[+], o escriba el número de la selección: 1
+</code></pre>
+<p>En este caso se pone 1 y se presiona <code>enter</code>.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-49880327-14', 'auto');
+
+    (function() {
+      var gaCodelab = '0';
+      if (gaCodelab) {
+        ga('create', gaCodelab, 'auto', {name: 'codelab'});
+      }
+
+      var gaView;
+      var parts = location.search.substring(1).split('&');
+      for (var i = 0; i < parts.length; i++) {
+        var param = parts[i].split('=');
+        if (param[0] === 'viewga') {
+          gaView = param[1];
+          break;
+        }
+      }
+      if (gaView && gaView !== gaCodelab) {
+        ga('create', gaView, 'auto', {name: 'view'});
+      }
+    })();
+  </script>
+
+</body>
+</html>
