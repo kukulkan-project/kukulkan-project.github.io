@@ -4,8 +4,8 @@
   "format": "html",
   "prefix": "../../",
   "mainga": "UA-49880327-14",
-  "updated": "2018-11-01T19:25:31-06:00",
-  "id": "demo",
+  "updated": "2018-11-01T20:05:57-06:00",
+  "id": "git-guideline-kukulkan",
   "duration": 0,
   "title": "Lineamientos para Git",
   "author": "Kukulkan Team",
@@ -21,5 +21,5 @@
     "js"
   ],
   "ga": "0",
-  "url": "demo"
+  "url": "git-guideline-kukulkan"
 }

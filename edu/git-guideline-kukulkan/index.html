@@ -26,43 +26,21 @@
     
       <google-codelab-step label="Introducción" duration="0">
         <p>Los lineamietos expuestos aquí son una extensión de <a href="http://nvie.com/posts/a-successful-git-branching-model" target="_blank">A successful Git branching model</a></p>
-<p>Explicar el modelo de desarrollo y control de versión de código de los sistemas desarrollados en la <strong>DADS</strong> con la herramienta <strong>Git</strong>.</p>
+<p>Explicar el modelo de desarrollo y control de versión de código de los sistemas desarrollados utiliando la plataforma <strong>kukulkan</strong></p>
+<p>El modelo de desarrollo explicado aquí puede variar de acuerdo a las necesidades específicas de cada proyecto, sin embargo el modelo general de desarrollo considera diferentes flujos trabajo que pueden adaptarse a las necesidades específicas. El modelo definido aquí aplica sólo para equipos que se encuentren gestionando su código con la herramienta <strong>Git</strong>.</p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Alcance" duration="0">
-        <p>El presente lineamiento tiene por alcance describir las políticas y lineamientos de trabajo que deberá de seguir un equipo de desarrollo de software dentro de la <strong>DADS</strong> y que esté utilizando la herramienta para la administración y versionamiento de código Git. Los conceptos, procesos, comandos y otros elementos que pertenecen propiamente a la tecnología <strong>Git</strong> están fuera del alcance del presente documento.</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Panorama" duration="0">
-        <p>El documento está compuesto por dos secciones: Modelo de Desarrollo y Descripción de Ramas. En la primera se explica el modelo general que utilizan los equipos de desarrollo de software dentro de la <strong>DADS</strong>, conceptos generales y consideraciones que se deben de tomar en cuenta para ejecutar de manera adecuada el modelo de desarrollo. En la segunda sección se describen las ramas empleadas para cubrir el ciclo de desarrollo de un sistema de software, sus políticas y reglas que la gobiernan, así como también las prácticas recomendadas de uso.</p>
-<p>Modelo de Desarrollo</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Introducción" duration="0">
-        <p>El modelo de desarrollo explicado aquí puede variar de acuerdo a las necesidades específicas de cada proyecto, sin embargo el modelo general de desarrollo considera diferentes flujos trabajo que pueden adaptarse a las necesidades específicas. El modelo definido aquí aplica sólo para equipos que se encuentren gestionando su código con la herramienta <strong>Git</strong>.</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Elementos del Modelo de Desarrollo" duration="0">
-        <p>El modelo consta de la definición de los siguientes elementos:</p>
+      <google-codelab-step label="Elementos del Flujo de Desarrollo" duration="0">
+        <p>El flujo de trabajo consta de la definición de los siguientes elementos:</p>
 <ol type="1">
 <li>Roles</li>
 <li>Actividades</li>
 <li>Ramas principales</li>
 </ol>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Roles" duration="0">
-        <p>El modelo de desarrollo involucra dos roles; <strong>Master</strong> y <strong>Developer</strong>, mismos que se describen a continuación:</p>
+<h2>Roles</h2>
+<p>El modelo de desarrollo involucra dos roles; <strong>Master</strong> y <strong>Developer</strong>, mismos que se describen a continuación:</p>
 <p><strong>Master</strong></p>
 <p>Principalmente, este rol será el encargo de llevar a cabo la integración del sistema, además de las siguientes responsabilidades:</p>
 <ol type="1">
@@ -77,13 +55,10 @@
 <li>Construir software de calidad de acuerdo a los estándares definidos en la organización.</li>
 <li>Participar en las tareas de integración cuando estas sean solicitadas por el rol master.</li>
 </ol>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Actividades" duration="0">
-        <p>Las actividades que se llevan a cabo en el modelo de desarrollo se ilustran en la siguiente gráfica:</p>
+<h2>Actividades</h2>
+<p>Las actividades que se llevan a cabo en el modelo de desarrollo se ilustran en la siguiente gráfica:</p>
 <p><img src="img/84c4132021fb326e.png"></p>
+<h3>Ramas Principales</h3>
 
 
       </google-codelab-step>
@@ -114,9 +89,13 @@
 </td><td colspan="1" rowspan="1"><p>Comandos sugeridos para la creación, modificación, unión y eliminación de la rama.</p>
 </td></tr>
 </table>
-<p>Rama Master</p>
-<h2>Descripción</h2>
-<p>La rama **master, **por convención, será la rama principal del proyecto. En esta rama se encuentran las versiones productivas del sistema y que se han liberado a producción.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Rama Master" duration="0">
+        <h2>Descripción</h2>
+<p>La rama <strong>master</strong>, por convención, será la rama principal del proyecto. En esta rama se encuentran las versiones productivas del sistema y que se han liberado a producción.</p>
 <h2>Rama de la que bifurca</h2>
 <p><code>Ninguna</code></p>
 <h2>Rama con la que se une</h2>
@@ -134,8 +113,12 @@
 <p><img src="img/fcfd05ac17ad217e.png"></p>
 <h2>Comandos</h2>
 <p><code>[NO APLICA]</code></p>
-<p>Rama Develop</p>
-<h2>Descripción</h2>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Rama Develop" duration="0">
+        <h2>Descripción</h2>
 <p>La rama <strong>develop</strong>, por convención, será la rama secundaria del proyecto. En esta rama, el equipo de desarrollo se encuentra trabajando día con día una nueva versión del sistema.</p>
 <h2>Rama de la que bifurca</h2>
 <p><code>master</code></p>
@@ -148,8 +131,12 @@
 <p><img src="img/fcfd05ac17ad217e.png"></p>
 <h2>Comandos</h2>
 <p><code>[NO APLICA]</code></p>
-<p>Rama Feature</p>
-<h2>Descripción</h2>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Rama Feature" duration="0">
+        <h2>Descripción</h2>
 <p>La rama de características &#34;<strong>feature</strong>&#34; es utilizada para desarrollar nuevas características o funcionalidades que vendrán en las próximas o futuras entregas. Esta rama se crea cuando se comienza a desarrollar una nueva característica de la cual se desconoce la fecha de entrega. La esencia de esta rama es que exista durante el periodo de tiempo en que tome desarrollar la nueva característica. Eventualmente, esta rama se unirá a la rama de desarrollo <strong>develop</strong> (para agregar de manera definitiva la nueva característica en la próxima entrega) o se eliminará (en caso de que la nueva característica no cumpla con los objetivos deseados).</p>
 <h2>Rama de la que bifurca</h2>
 <p><code>develop</code></p>
@@ -185,8 +172,12 @@
 <p>Finalmente, se envian los cambios a la rama remota <code>develop</code></p>
 <pre><code>git push origin develop
 </code></pre>
-<p>Rama Release</p>
-<h2>Descripción</h2>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Rama Release" duration="0">
+        <h2>Descripción</h2>
 <p>La rama &#34;<strong>release</strong>&#34; se debe utilizar para la preparación de una nueva entrega en el ambiente de producción. Esta rama es útil para corregir pequeños defectos y preparar los metadatos que deberá llevar la próxima entrega (número de versión, fecha de compilación, etc.). El beneficio de tener una rama de entrega <strong>release</strong> radica en el hecho de que podemos conservar la rama <strong>develop</strong> limpia y lista para recibir nuevas versiones que se tendrán que integrar a la rama <strong>master</strong>. Adicionalmente, la rama <strong>release</strong> será utilizada por el equipo de <strong>QA</strong> para probar la entrega antes de que esta llegue a producción.</p>
 <h2>Rama de la que bifurca</h2>
 <p><code>develop</code></p>
@@ -230,8 +221,12 @@
 <p>Enviar los cambios a la rama develop</p>
 <pre><code>git tag –a 1.2
 </code></pre>
-<p>Rama Hotfixes</p>
-<h2>Descripción</h2>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Rama Hotfixes" duration="0">
+        <h2>Descripción</h2>
 <p>Una vez que se ha llevado a cabo una liberación a la rama <code>master</code> y esta versión forma parte del ambiente productivo del cliente, es posible que exista el reporte de nuevos <code>bugs</code> encontrados por los usuarios finales. Para corregir estos <code>bugs</code> y desplegar una nueva versión en el ambiente productivo, es que se utilizará la rama <code>hotfixe</code>, que ayudará a corregir errores que surgan en el ambiente de producción.</p>
 <h2>Rama de la que bifurca</h2>
 <p><code>master</code></p>
@@ -258,13 +253,8 @@
 <h2>Diagrama</h2>
 <p><img src="img/e5543e6b0071579f.png"></p>
 <h2>Comandos</h2>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Crear una rama 
-hotfix" duration="0">
-        <p>Las ramas hotfix son creados desde la rama master. Por ejemplo, si la versión que se liberó a producción fue la <code>1.2.0</code>, y se detectan errores durante el uso del sistema y los cambios en la rama <code>develop</code> no son estables, entonces se pude crear una rama <code>hotfix</code> para atender los bugs y volver a liberar a producción.</p>
+<h2>Crear una rama <code>hotfix</code></h2>
+<p>Las ramas hotfix son creados desde la rama master. Por ejemplo, si la versión que se liberó a producción fue la <code>1.2.0</code>, y se detectan errores durante el uso del sistema y los cambios en la rama <code>develop</code> no son estables, entonces se pude crear una rama <code>hotfix</code> para atender los bugs y volver a liberar a producción.</p>
 <pre><code>git checkout -b hotfix-1.2.1 master
 ./bum-version.sh 1.2.1
 git commit -a -m &#34;Versión modificada a 1.2.1&#34;
@@ -286,12 +276,11 @@ git merge --no-ff hotfix-1.2.1
 <p>Eliminación de la rama temporal:</p>
 <pre><code>git branch -d hotfix-1.2.1
 </code></pre>
-<p>Lineamientos Generales</p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Generales" duration="0">
+      <google-codelab-step label="Lineamientos Generales" duration="0">
         <p>En general, siempre hay que considerar los siguientes elementos:</p>
 <ul>
 <li>Para comenzar a trabajar siempre hay que crear un branch a partir de origin develop.</li>
@@ -305,7 +294,7 @@ git merge --no-ff hotfix-1.2.1
 
       </google-codelab-step>
     
-      <google-codelab-step label="Particulares" duration="0">
+      <google-codelab-step label="Lineamientos Particulares" duration="0">
         <p>Los siguiente lineamientos aplican a todas la ramas:</p>
 <ul>
 <li>Tanto el nombre de los directorios, como el de los productos de trabajo que están contenidos en ellos no incluirán acentos, ni caracteres especiales, ni espacios.</li>
@@ -321,7 +310,7 @@ git merge --no-ff hotfix-1.2.1
 
       </google-codelab-step>
     
-      <google-codelab-step label="Importantes" duration="0">
+      <google-codelab-step label="Notas Importantes" duration="0">
         <p>Existen dos cosas que nunca se deberá de llevar a cabo en <strong>Git</strong>:</p>
 <ol type="1">
 <li><strong>NUNCA</strong> forzar una operación <strong>push</strong>: Si te encuentras en una situación donde tus cambios no puedas ser enviados al upstream, debido a que algo está mal.</li>

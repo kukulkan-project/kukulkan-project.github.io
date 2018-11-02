@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
-  <title>Titulo</title>
+  <title>Lineamientos para Git</title>
   <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <link rel="import" href="../../elements/codelab.html">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
@@ -20,12 +20,314 @@
 </head>
 <body unresolved class="fullbleed">
 
-  <google-codelab title="Titulo"
+  <google-codelab title="Lineamientos para Git"
                   environment="web"
                   feedback-link="">
     
-      <google-codelab-step label="SubTitulo" duration="0">
-        
+      <google-codelab-step label="Introducción" duration="0">
+        <p>Los lineamietos expuestos aquí son una extensión de <a href="http://nvie.com/posts/a-successful-git-branching-model" target="_blank">A successful Git branching model</a></p>
+<p>Explicar el modelo de desarrollo y control de versión de código de los sistemas desarrollados en la <strong>DADS</strong> con la herramienta <strong>Git</strong>.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Alcance" duration="0">
+        <p>El presente lineamiento tiene por alcance describir las políticas y lineamientos de trabajo que deberá de seguir un equipo de desarrollo de software dentro de la <strong>DADS</strong> y que esté utilizando la herramienta para la administración y versionamiento de código Git. Los conceptos, procesos, comandos y otros elementos que pertenecen propiamente a la tecnología <strong>Git</strong> están fuera del alcance del presente documento.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Panorama" duration="0">
+        <p>El documento está compuesto por dos secciones: Modelo de Desarrollo y Descripción de Ramas. En la primera se explica el modelo general que utilizan los equipos de desarrollo de software dentro de la <strong>DADS</strong>, conceptos generales y consideraciones que se deben de tomar en cuenta para ejecutar de manera adecuada el modelo de desarrollo. En la segunda sección se describen las ramas empleadas para cubrir el ciclo de desarrollo de un sistema de software, sus políticas y reglas que la gobiernan, así como también las prácticas recomendadas de uso.</p>
+<p>Modelo de Desarrollo</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Introducción" duration="0">
+        <p>El modelo de desarrollo explicado aquí puede variar de acuerdo a las necesidades específicas de cada proyecto, sin embargo el modelo general de desarrollo considera diferentes flujos trabajo que pueden adaptarse a las necesidades específicas. El modelo definido aquí aplica sólo para equipos que se encuentren gestionando su código con la herramienta <strong>Git</strong>.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Elementos del Modelo de Desarrollo" duration="0">
+        <p>El modelo consta de la definición de los siguientes elementos:</p>
+<ol type="1">
+<li>Roles</li>
+<li>Actividades</li>
+<li>Ramas principales</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Roles" duration="0">
+        <p>El modelo de desarrollo involucra dos roles; <strong>Master</strong> y <strong>Developer</strong>, mismos que se describen a continuación:</p>
+<p><strong>Master</strong></p>
+<p>Principalmente, este rol será el encargo de llevar a cabo la integración del sistema, además de las siguientes responsabilidades:</p>
+<ol type="1">
+<li>Llevar a cabo las operaciones de integración entre la rama origin/develop y origin/master.</li>
+<li>Verificar que los números de versiones en la rama master respetan el versionamiento <a href="https://semver.org/spec/v2.0.0.html" target="_blank">Semantic Versioning 2.0.0</a>.</li>
+<li>Identificar inconsistencias entre la nueva versión y anteriores.</li>
+</ol>
+<p><strong>Developer</strong></p>
+<p>En cada proyecto se puede contar con 1 o más roles de este tipo y sus principales actividades son:</p>
+<ol type="1">
+<li>Participar en la construcción de nuevas funcionalidades sobre un sistema de software.</li>
+<li>Construir software de calidad de acuerdo a los estándares definidos en la organización.</li>
+<li>Participar en las tareas de integración cuando estas sean solicitadas por el rol master.</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Actividades" duration="0">
+        <p>Las actividades que se llevan a cabo en el modelo de desarrollo se ilustran en la siguiente gráfica:</p>
+<p><img src="img/84c4132021fb326e.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Meta Información para cada Rama" duration="0">
+        <p>Con la finalidad de comprender de manera precisa el estudio de las diferentes ramas de trabajo utilizados en la <strong>DADS</strong>, a continuación se presenta la descripción de la meta-información que define a cada una de las ramas y que será utilizado a lo largo de este documento para describirla.</p>
+<table>
+<tr></tr>
+<tr><td colspan="1" rowspan="1"><p>Descripción</p>
+</td><td colspan="1" rowspan="1"><p>Descripción básica de la rama en cuestión.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Rama de la que bifurca</p>
+</td><td colspan="1" rowspan="1"><p>Nombre de la rama que bifurcó.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Rama con la que se une</p>
+</td><td colspan="1" rowspan="1"><p>Nombre de la rama a la que se une cuando se ejecuta una operación de tipo merge.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Convención de nombrado</p>
+</td><td colspan="1" rowspan="1"><p>Convención de nombrado que aplica para la rama.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Lineamiento</p>
+</td><td colspan="1" rowspan="1"><p>Consideraciones para el buen uso de la Rama.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Diagrama</p>
+</td><td colspan="1" rowspan="1"><p>Diagrama explicativo sobre el uso de la rama.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Comandos</p>
+</td><td colspan="1" rowspan="1"><p>Comandos sugeridos para la creación, modificación, unión y eliminación de la rama.</p>
+</td></tr>
+</table>
+<p>Rama Master</p>
+<h2>Descripción</h2>
+<p>La rama **master, **por convención, será la rama principal del proyecto. En esta rama se encuentran las versiones productivas del sistema y que se han liberado a producción.</p>
+<h2>Rama de la que bifurca</h2>
+<p><code>Ninguna</code></p>
+<h2>Rama con la que se une</h2>
+<p><code>Ninguna</code></p>
+<h2>Convención de nombrado</h2>
+<p>Esta rama <strong>siempre</strong> se llama <code>master</code></p>
+<h2>Lineamientos</h2>
+<ol type="1">
+<li>No está permitido subir &#34;código roto&#34; a la rama master.</li>
+<li>El código que se suba a master deberá de ser cuidadosamente probado antes de ser integrado; se sugiere utilizar el branch <em>release</em> antes de que una nueva liberación se lleve a cabo a la rama <strong>master</strong>.</li>
+<li>Sólo el <strong>rol master</strong> puede ejecutar la operación de <code>push/merge</code> a esta rama.</li>
+<li>Esta rama <strong>nunca</strong> se deberá de borrar.</li>
+</ol>
+<h2>Diagrama</h2>
+<p><img src="img/fcfd05ac17ad217e.png"></p>
+<h2>Comandos</h2>
+<p><code>[NO APLICA]</code></p>
+<p>Rama Develop</p>
+<h2>Descripción</h2>
+<p>La rama <strong>develop</strong>, por convención, será la rama secundaria del proyecto. En esta rama, el equipo de desarrollo se encuentra trabajando día con día una nueva versión del sistema.</p>
+<h2>Rama de la que bifurca</h2>
+<p><code>master</code></p>
+<h2>Rama con la que se une</h2>
+<p><code>master</code></p>
+<h2>Convención de nombrado</h2>
+<p>Siempre se llamará <code>develop</code></p>
+<h2>Lineamientos</h2>
+<h2>Diagrama</h2>
+<p><img src="img/fcfd05ac17ad217e.png"></p>
+<h2>Comandos</h2>
+<p><code>[NO APLICA]</code></p>
+<p>Rama Feature</p>
+<h2>Descripción</h2>
+<p>La rama de características &#34;<strong>feature</strong>&#34; es utilizada para desarrollar nuevas características o funcionalidades que vendrán en las próximas o futuras entregas. Esta rama se crea cuando se comienza a desarrollar una nueva característica de la cual se desconoce la fecha de entrega. La esencia de esta rama es que exista durante el periodo de tiempo en que tome desarrollar la nueva característica. Eventualmente, esta rama se unirá a la rama de desarrollo <strong>develop</strong> (para agregar de manera definitiva la nueva característica en la próxima entrega) o se eliminará (en caso de que la nueva característica no cumpla con los objetivos deseados).</p>
+<h2>Rama de la que bifurca</h2>
+<p><code>develop</code></p>
+<h2>Rama con la que se une</h2>
+<p><code>develop</code></p>
+<h2>Convención de nombrado</h2>
+<p>El nombrado de esta rama se deberá de apegar a lo establecido en [AGIS] y la propuesta en esta sección:</p>
+<p>Nomenclatura Adicional:<code>feature-*</code></p>
+<p>Ejemplo:</p>
+<ul>
+<li>feature-seguridad</li>
+<li>feature-carrusel</li>
+</ul>
+<h2>Lineamientos</h2>
+<ol type="1">
+<li>Sólo existe en el repositorio local, nunca en el remoto <strong>origin</strong></li>
+</ol>
+<h2>Diagrama</h2>
+<p><img src="img/8a59570018c7dd9b.png"></p>
+<h2>Comandos</h2>
+<p>Crear una rama <code>feature</code> a partir de la rama <code>develop</code> se deberá de hacer lo siguiente:</p>
+<pre><code>git checkout -b feature-seguridad develop
+</code></pre>
+<p>Una vez que se a trabajo en la nueva rama, para actualizar los cambios en la rama <code>develop</code> primero tenemos que regresar a la rama <code>develop</code> y partir de allí llevar a cabo la operación <code>merge</code>:</p>
+<pre><code>git checkout develop
+</code></pre>
+<p>Unir las modificaciones hechas en la rama <code>feature</code> dentro de la rama <code>develop</code>:</p>
+<pre><code>git merge --no-ff feature-seguridad
+</code></pre>
+<p>A continuación, se deberá de borrar la rama <code>feature-seguridad</code>:</p>
+<pre><code>git branch -d feature-seguridad
+</code></pre>
+<p>Finalmente, se envian los cambios a la rama remota <code>develop</code></p>
+<pre><code>git push origin develop
+</code></pre>
+<p>Rama Release</p>
+<h2>Descripción</h2>
+<p>La rama &#34;<strong>release</strong>&#34; se debe utilizar para la preparación de una nueva entrega en el ambiente de producción. Esta rama es útil para corregir pequeños defectos y preparar los metadatos que deberá llevar la próxima entrega (número de versión, fecha de compilación, etc.). El beneficio de tener una rama de entrega <strong>release</strong> radica en el hecho de que podemos conservar la rama <strong>develop</strong> limpia y lista para recibir nuevas versiones que se tendrán que integrar a la rama <strong>master</strong>. Adicionalmente, la rama <strong>release</strong> será utilizada por el equipo de <strong>QA</strong> para probar la entrega antes de que esta llegue a producción.</p>
+<h2>Rama de la que bifurca</h2>
+<p><code>develop</code></p>
+<h2>Rama con la que se une</h2>
+<ul>
+<li><code>develop</code></li>
+<li><code>master</code></li>
+</ul>
+<h2>Convención de nombrado</h2>
+<p>El nombrado de esta rama se deberá de apegar a lo establecido en [AGIS] y la propuesta en esta sección:</p>
+<p>Nomenclatura obligatoria: <code>release-*</code></p>
+<p>Ejemplo:</p>
+<ul>
+<li><code>release-seguridad</code></li>
+<li><code>release-carrusel</code></li>
+</ul>
+<h2>Lineamientos</h2>
+<ol type="1">
+<li>El mejor momento para crear una ramificación de develop es cuando el desarrollo refleja el estado deseado de una nueva entrega.</li>
+<li>Todas las funcionalidades o características que se esperan mostrar en la próxima entrega deberán de unirse a la rama de develop.</li>
+<li>Es exactamente al comienzo de la creación de esta rama en que se asigna una versión. Es hasta ese momento que la rama develop refleja los cambios para la siguiente entrega, pero no es claro si esa nueva entrega eventualmente se convertirá en la versión 0.3 o 1.0. La notación para el versionamiento de código es la descrita en <a href="https://semver.org/spec/v2.0.0.html" target="_blank">Semantic Versioning 2.0.0</a></li>
+</ol>
+<h2>Diagrama</h2>
+<p><img src="img/e5543e6b0071579f.png"></p>
+<h2>Comandos</h2>
+<p>Creación de la rama de entrega <code>release-1.2</code></p>
+<pre><code>git checkout -b release-1.2 develop
+</code></pre>
+<p>Una vez que se a trabajo en la nueva rama, para actualizar los cambios en la rama develop primero tenemos que regresar a la rama develop y partir de allí llevar a cabo una unión (merge):</p>
+<pre><code>./bump-version.sh 1.2
+</code></pre>
+<p>Unir las modificaciones hechas en la rama feature dentro de la rama develop:</p>
+<pre><code>git commit -a -m &#34;Bumped version number to 1.2&#34;
+</code></pre>
+<p>Cambiarnos a la rama de master:</p>
+<pre><code>git checkout master
+</code></pre>
+<p>Unir los cambios de la rama release1.2 con master:</p>
+<pre><code>git merge –no-ff release-1.2
+</code></pre>
+<p>Enviar los cambios a la rama develop</p>
+<pre><code>git tag –a 1.2
+</code></pre>
+<p>Rama Hotfixes</p>
+<h2>Descripción</h2>
+<p>Una vez que se ha llevado a cabo una liberación a la rama <code>master</code> y esta versión forma parte del ambiente productivo del cliente, es posible que exista el reporte de nuevos <code>bugs</code> encontrados por los usuarios finales. Para corregir estos <code>bugs</code> y desplegar una nueva versión en el ambiente productivo, es que se utilizará la rama <code>hotfixe</code>, que ayudará a corregir errores que surgan en el ambiente de producción.</p>
+<h2>Rama de la que bifurca</h2>
+<p><code>master</code></p>
+<h2>Rama con la que se une</h2>
+<p><code>masterdevelop</code></p>
+<h2>Convención de nombrado</h2>
+<p>hotfix-[modulo-version]</p>
+<p>Ejemplo:</p>
+<ul>
+<li><code>hotfix-seguridad-v1.1.1</code></li>
+<li><code>hotfix-carrusel-v1.1.1</code></li>
+</ul>
+<h2>Lineamientos</h2>
+<ol type="1">
+<li>La rama <code>hotfixes</code> sólo existe mientras se está corriguiendo errores.</li>
+<li>La rama <code>hotfixes</code> existe en el repositorio remoto.</li>
+<li>La rama <code>hotfixes</code> es creada y eliminada por el rol master.</li>
+<li>La operación <strong>merge</strong> con la rama <code>master</code> y la rama<code>develop</code> sólo la pude llevar a cabo el <strong>rol master</strong>.</li>
+</ol>
+<p>Si existe una rama release cuando ocurre un bug en producción, entonces:</p>
+<ol type="1">
+<li>Los <strong>bugs</strong> corregidos en la rama <code>hotfix</code> se deberán de unir a la rama <code>release</code> y no a <code>develop</code>; la unión con <code>develop</code> ocurre cuando la rama <code>release</code> está lista para producción. Si el trabajo en la rama <code>develop</code> requiere de manera inmediata el cambio realizado en la rama <code>hotfix</code>, entonces se puede lleva a cabo la operación <strong>merge</strong> dentro de la rama <code>develop</code>;</li>
+</ol>
+<h2>Diagrama</h2>
+<p><img src="img/e5543e6b0071579f.png"></p>
+<h2>Comandos</h2>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Crear una rama 
+hotfix" duration="0">
+        <p>Las ramas hotfix son creados desde la rama master. Por ejemplo, si la versión que se liberó a producción fue la <code>1.2.0</code>, y se detectan errores durante el uso del sistema y los cambios en la rama <code>develop</code> no son estables, entonces se pude crear una rama <code>hotfix</code> para atender los bugs y volver a liberar a producción.</p>
+<pre><code>git checkout -b hotfix-1.2.1 master
+./bum-version.sh 1.2.1
+git commit -a -m &#34;Versión modificada a 1.2.1&#34;
+</code></pre>
+<p>Durante este paso se deberán de corregir los <code>bugs</code> en uno o varios <code>commits</code>:</p>
+<pre><code>git commit -m &#34;Resolviendo bugs de producción&#34;
+</code></pre>
+<p>Finalmente, se lleva a cabo un <code>merge</code> tanto a la rama <code>master</code> como a la rama <code>develop</code>,</p>
+<p>Operación <code>merge</code> en la rama <code>master</code>:</p>
+<pre><code>git checkout master
+git merge --no-ff hotfix-1.2.1
+</code></pre>
+<p><strong>Nota</strong> Se puden utilizar las opciones<code>-s</code> o <code>-u</code> para firmar nuestro tag.</p>
+<p>Operación <code>merge</code> en la rama <code>develop</code>:</p>
+<pre><code>git checkout develop
+git merge --no-ff hotfix-1.2.1
+</code></pre>
+<p><strong>Nota</strong> en caso que exista una rama de <code>release</code> los cambios en la rama <code>hotfix</code> deberán de unirse también en la rama <code>release</code>, en lugar de <code>develop</code>.</p>
+<p>Eliminación de la rama temporal:</p>
+<pre><code>git branch -d hotfix-1.2.1
+</code></pre>
+<p>Lineamientos Generales</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Generales" duration="0">
+        <p>En general, siempre hay que considerar los siguientes elementos:</p>
+<ul>
+<li>Para comenzar a trabajar siempre hay que crear un branch a partir de origin develop.</li>
+<li>Probar el software antes de hacer un push al repositorio remoto <strong>origin develp</strong>.</li>
+<li>En caso que esté trabajando en una nueva funcionalidad y decides que no formará parte de la rama develop, entonces, para comenzar a trabajar sobre otra nueva funcionalidad siempre deberás de hacer un rebase a <strong>develop</strong>.</li>
+<li>Llevar a cabo la operación checkout a develop, para asegurarte que te encuentras trabajando con la última versión del proyecto en fase de desarrollo.</li>
+<li>Siempre prueba tu código una y otra vez.</li>
+<li>Los proyectos no deberán de ser creados por los integrantes del repositorio gitlab, únicamente el administrador será el único facultado en llevar a cabo este tipo de acciones.</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Particulares" duration="0">
+        <p>Los siguiente lineamientos aplican a todas la ramas:</p>
+<ul>
+<li>Tanto el nombre de los directorios, como el de los productos de trabajo que están contenidos en ellos no incluirán acentos, ni caracteres especiales, ni espacios.</li>
+<li>El código contenido en cualquier rama deberá ser versionado haciendo uso del juego de caracteres <strong>UTF-8</strong>.</li>
+<li>Salvo imágenes, las ramas sólo podrán contener código fuente. Ningún otro archivo de tipo binario deberá ser considerado para versionamiento en la rama de código. En caso que sea necesario subir imágenes, estas deberán de ser codificadas en <strong>base64</strong>.</li>
+<li>Efectuar el <strong>push</strong> sólo para las unidades funcionales completas.</li>
+<li>Efectuar <strong>push</strong> de manera frecuente. De ser posible, cada día, siempre y cuando esto no entre en conflicto con la regla anterior.</li>
+<li>Para <strong>push</strong> deberá generarse un comentario amplio y descriptivo que incluya el detalle de aquello que se está subiendo en el repositorio <strong>Git</strong>.</li>
+<li>Generar respaldos de la base de datos <strong>Git</strong> en una base mensual.</li>
+<li>No estará permitido efectuar bloqueos, a menos que esto sea justificado plenamente.</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Importantes" duration="0">
+        <p>Existen dos cosas que nunca se deberá de llevar a cabo en <strong>Git</strong>:</p>
+<ol type="1">
+<li><strong>NUNCA</strong> forzar una operación <strong>push</strong>: Si te encuentras en una situación donde tus cambios no puedas ser enviados al upstream, debido a que algo está mal.</li>
+<li><strong>NUNCA</strong> ejecutes la operación <strong>rebase</strong> a una rama a la que le has aplicado la operación <strong>push</strong> o <strong>pull</strong>. Esto puede generar la duplicidad de <em>commits</em> a un repositorio compartido.</li>
+</ol>
+
 
       </google-codelab-step>
     
