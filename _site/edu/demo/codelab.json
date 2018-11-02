@@ -1,13 +1,13 @@
 {
   "environment": "web",
-  "source": "docker-kukulkan.md",
+  "source": "_machote.md",
   "format": "html",
   "prefix": "../../",
   "mainga": "UA-49880327-14",
-  "updated": "2018-11-01T16:02:09-06:00",
-  "id": "docker-kukulkan",
-  "duration": 26,
-  "title": "Despliegue de un proyecto con DOCKERS",
+  "updated": "2018-10-24T23:31:13-05:00",
+  "id": "demo",
+  "duration": 0,
+  "title": "Titulo",
   "author": "Kukulkan Team",
   "summary": "Demo para utlizar Kukulkan",
   "theme": "",
@@ -21,5 +21,5 @@
     "js"
   ],
   "ga": "0",
-  "url": "docker-kukulkan"
+  "url": "demo"
 }
