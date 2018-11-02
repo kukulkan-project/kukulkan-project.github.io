@@ -20,16 +20,20 @@ info "Running on : $path"
 
 function mainScript() {
 
-if $run ; then
-runserver
+if $server ; then
+server
 fi
 
 if $codelab ; then
 codelab
 fi
+
+if $push ; then
+push
+fi
 }
 
-function runserver() {
+function server() {
 bundle exec jekyll serve
 }
 
@@ -38,6 +42,12 @@ function codelab() {
 for filename in [a-z]*.md; do
     claat export $filename
 done
+}
+
+function push() {
+git add -A
+git commit -m "updating site"
+git push
 }
 
 function trapCleanup() {
@@ -73,8 +83,9 @@ init=false
 branches=false
 update=false
 compile=false
-run=false
+server=false
 codelab=false
+push=false
 args=()
 
 # Set Colors
@@ -109,7 +120,7 @@ This script is used for kukulkan project initial configuration.
  ${bold}Options:${reset}
       --path        Path to kukulkan project
   -c, --codelab     Execute codelabs export
-  -r  --run         Run a local server for testing
+  -s  --server      Run a local server for testing
       --version     Output version information and exit
 "
 }
@@ -160,15 +171,12 @@ while [[ $1 = -?* ]]; do
   case $1 in
     -h|--help) usage >&2; safeExit ;;
     --version) echo "$(basename $0) ${version}"; safeExit ;;
-    --path) shift; path=${1} ;;
-    -p|--password) shift; echo "Enter Pass: "; stty -echo; read PASS; stty echo;
-      echo ;;
-    -v|--verbose) verbose=true ;;
+    -p|--push) push=true ;;
     -u|--update) update=true ;;
     -c|--codelab) codelab=true ;;
     -i|--init) init=true ;;
     -b|--branches) branches=true ;;
-    -r|--run) run=true ;;
+    -s|--server) server=true ;;
     -l|--log) printLog=true ;;
     -q|--quiet) quiet=true ;;
     -s|--strict) strict=true;;

@@ -20,8 +20,8 @@ info "Running on : $path"
 
 function mainScript() {
 
-if $run ; then
-runserver
+if $server ; then
+server
 fi
 
 if $codelab ; then
@@ -33,7 +33,7 @@ push
 fi
 }
 
-function runserver() {
+function server() {
 bundle exec jekyll serve
 }
 
@@ -83,7 +83,7 @@ init=false
 branches=false
 update=false
 compile=false
-run=false
+server=false
 codelab=false
 push=false
 args=()
@@ -120,7 +120,7 @@ This script is used for kukulkan project initial configuration.
  ${bold}Options:${reset}
       --path        Path to kukulkan project
   -c, --codelab     Execute codelabs export
-  -r  --run         Run a local server for testing
+  -s  --server      Run a local server for testing
       --version     Output version information and exit
 "
 }
@@ -176,7 +176,7 @@ while [[ $1 = -?* ]]; do
     -c|--codelab) codelab=true ;;
     -i|--init) init=true ;;
     -b|--branches) branches=true ;;
-    -r|--run) run=true ;;
+    -s|--server) server=true ;;
     -l|--log) printLog=true ;;
     -q|--quiet) quiet=true ;;
     -s|--strict) strict=true;;
