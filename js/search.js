@@ -73,10 +73,10 @@ layout: null
 			});
 
 			searchResultsEl.innerHTML = resultsHTML;
-			searchProcessEl.innerText = "Mostrando";
+			searchProcessEl.innerText = "encontró";
 		} else {
 			searchResultsEl.style.display = "none";
-			searchProcessEl.innerText = "No hay";
+			searchProcessEl.innerText = "No encontró";
 		}
 	}
 
