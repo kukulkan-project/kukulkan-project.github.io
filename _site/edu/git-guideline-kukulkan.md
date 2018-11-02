@@ -22,7 +22,6 @@ El flujo de trabajo consta de la definición de los siguientes elementos:
 
 1. Roles
 2. Actividades
-3. Ramas principales
 
 ### Roles
 
@@ -51,8 +50,6 @@ El modelo de desarrollo involucra dos roles; **Master** y **Developer**, mismos 
 Las actividades que se llevan a cabo en el modelo de desarrollo se ilustran en la siguiente gráfica:
 
 ![](images/diagram.png)
-
-#### Ramas Principales
 
 ## Meta Información para cada Rama
 

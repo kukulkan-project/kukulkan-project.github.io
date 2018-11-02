@@ -13,7 +13,11 @@
 <lastmod>2018-10-26T00:00:00+00:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/desarrollo/git-guideline-kukulkan/</loc>
+<loc>http://localhost:4000/lineamientos/git-guideline-kukulkan/</loc>
+<lastmod>2018-11-01T00:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/lineamientos/rest-guideline-kukulkan/</loc>
 <lastmod>2018-11-01T00:00:00+00:00</lastmod>
 </url>
 <url>
@@ -38,7 +42,7 @@
 <loc>http://localhost:4000/category/configuraci%C3%B3n/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/category/desarrollo/</loc>
+<loc>http://localhost:4000/category/lineamientos/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/bower_components/app-layout/app-box/app-box.html</loc>
@@ -3186,7 +3190,7 @@
 </url>
 <url>
 <loc>http://localhost:4000/edu/demo-kukulkan/</loc>
-<lastmod>2018-11-02T02:06:01+00:00</lastmod>
+<lastmod>2018-11-02T03:12:09+00:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/edu/demo/</loc>
@@ -3194,7 +3198,7 @@
 </url>
 <url>
 <loc>http://localhost:4000/edu/docker-kukulkan/</loc>
-<lastmod>2018-11-02T02:06:01+00:00</lastmod>
+<lastmod>2018-11-02T03:12:09+00:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/edu/elements/codelab.html</loc>
@@ -3202,11 +3206,15 @@
 </url>
 <url>
 <loc>http://localhost:4000/edu/git-guideline-kukulkan/</loc>
-<lastmod>2018-11-02T02:06:01+00:00</lastmod>
+<lastmod>2018-11-02T03:12:09+00:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/edu/install-kukulkan/</loc>
-<lastmod>2018-11-02T02:06:01+00:00</lastmod>
+<lastmod>2018-11-02T03:12:09+00:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/edu/rest-guideline-kukulkan/</loc>
+<lastmod>2018-11-02T03:12:09+00:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/elements/codelab.html</loc>

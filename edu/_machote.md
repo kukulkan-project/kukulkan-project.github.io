@@ -1,7 +1,7 @@
-author: Kukulkan Team
-summary: Demo para utlizar Kukulkan
-id: demo
-categories: documentation
+author: {author}
+summary: {summary}
+id: {id}
+categories: {categories}
 environments: js
 status: draft
 analytics account: 0

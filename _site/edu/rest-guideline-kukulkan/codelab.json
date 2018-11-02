@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "source": "rest-guideline-kukulkan.md",
+  "format": "html",
+  "prefix": "../../",
+  "mainga": "UA-49880327-14",
+  "updated": "2018-11-01T21:12:05-06:00",
+  "id": "rest-guideline-kukulkan",
+  "duration": 0,
+  "title": "Lineamientos para la Construcción de Servicios RESTful",
+  "author": "Kukulkan Team",
+  "summary": "Lineamientos para Servicios REST Full",
+  "theme": "",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "lineamientos"
+  ],
+  "tags": [
+    "js"
+  ],
+  "ga": "0",
+  "url": "rest-guideline-kukulkan"
+}
