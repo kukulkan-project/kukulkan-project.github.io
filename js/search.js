@@ -49,13 +49,13 @@ layout: null
 			}
 
 			// Highlight query parts
-			preview = preview.replace(new RegExp("(" + parts.join("|") + ")", "gi"), "<strong>$1</strong>");
+			preview = preview.replace(new RegExp("(" + parts.join("|") + ")", "gi"), "</span><strong style=color:green;>$1</strong><span style='opacity: 0.5;'>");
 		} else {
 			// Use start of content if no match found
 			preview = content.substring(0, previewLength).trim() + (content.length > previewLength ? "..." : "");
 		}
 
-		return preview;
+		return "<span style='opacity: 0.5;'>"+preview+"</span>";
 	}
 
 	function displaySearchResults(results, query) {
