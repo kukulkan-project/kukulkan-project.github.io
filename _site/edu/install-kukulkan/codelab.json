@@ -4,7 +4,7 @@
   "format": "html",
   "prefix": "../../",
   "mainga": "UA-49880327-14",
-  "updated": "2018-10-26T02:21:42-05:00",
+  "updated": "2018-11-01T22:54:22-06:00",
   "id": "install-kukulkan",
   "duration": 34,
   "title": "Tutorial para el Uso de Kukulkan",
@@ -15,7 +15,7 @@
     "draft"
   ],
   "category": [
-    "documentation"
+    "instalacion"
   ],
   "tags": [
     "js"

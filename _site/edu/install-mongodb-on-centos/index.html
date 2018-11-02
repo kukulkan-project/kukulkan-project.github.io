@@ -1,0 +1,269 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Instalación de MongoDB en Centos 7</title>
+  <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../elements/codelab.html">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <style is="custom-style">
+    body {
+      font-family: "Roboto",sans-serif;
+      background: var(--google-codelab-background, #F8F9FA);
+    }
+  </style>
+  
+</head>
+<body unresolved class="fullbleed">
+
+  <google-codelab title="Instalación de MongoDB en Centos 7"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Prerequisitos" duration="1">
+        <ol type="1">
+<li>Centos 7 64Bits</li>
+<li>Acceso como <em>superusuario</em></li>
+<li>Acceso remoto por medio de <em>ssh</em></li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Actualización de paquetes" duration="2">
+        <pre><code>sudo yum -y update
+sudo yum -y install wget emacs-nox vim
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Corrección del 
+locale" duration="1">
+        <p>En caso de que al acceder por <em>ssh</em> a la máquina virtual marque un error con el <em>locale</em>, se puede corregir agregando dos líneas al archivo <code>/etc/locale.conf</code></p>
+<pre><code>LANG=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+</code></pre>
+<p>Dependiendo del idioma de instalación, puede que lo más correcto sea <code>LANG=es_MX.UTF-8</code> y <code>LC_ALL=es_MX.UTF-8</code>.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Puertos en el firewall" duration="1">
+        <p>En caso de que el <em>firewall</em> esté activo (<code>sudo systemctl status firewalld</code>), se deberán abrir los puertos de <em>tomcat</em> en el <em>firewall</em></p>
+<pre><code>sudo firewall-cmd --zone=public --add-port=27017/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=27018/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=27019/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=28017/tcp --permanent
+sudo firewall-cmd --reload
+</code></pre>
+<p>Para verificar <code>sudo firewall-cmd --list-all</code></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Configuración de seguridad" duration="5">
+        <p>Para algunas operaciones, es requerido que la seguridad de linux sea más laxa, para esto requerimos editar el archivo <code>/etc/selinux/config</code> y dejarlo parecido a lo siguiente</p>
+<pre><code># This file controls the state of SELinux on the system.
+# SELINUX= can take one of these three values:
+#     enforcing - SELinux security policy is enforced.
+#     permissive - SELinux prints warnings instead of enforcing.
+#     disabled - No SELinux policy is loaded.
+SELINUX=permissive
+# SELINUXTYPE= can take one of three two values:
+#     targeted - Targeted processes are protected,
+#     minimum - Modification of targeted policy. Only selected processes are protected.
+#     mls - Multi Level Security protection.
+SELINUXTYPE=targeted
+</code></pre>
+<p>Reiniciar después de modificar el SELinux</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Agregar Repositorio" duration="1">
+        <p>Creamos el archivo <code>/etc/yum.repos.d/mongodb-org-3.4.repo</code> con el siguiente contenido:</p>
+<pre><code>[mongodb-org-3.4]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.4/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-3.4.asc
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Instalar servidor y cliente" duration="1">
+        <pre><code>sudo yum install -y mongodb-org
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Habilitar Servicio" duration="1">
+        <pre><code>sudo systemctl enable mongod
+sudo systemctl start mongod
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Configurar sistema para número de archivos abiertos" duration="5">
+        <p>MongoDB requiere que el sistema le permita tener un número grande de archivos abiertos por proceso, para esto debemos editar el archivo <code>/etc/security/limits.d/20-nproc.conf</code> y agregamos al final</p>
+<pre><code>mongod soft nproc 32000
+</code></pre>
+<p>Despues de editar el archivo, requerimos reinicar mongodb:</p>
+<pre><code>sudo systemctl restart mongod
+</code></pre>
+<h2>Cambio en paginado en el kernel</h2>
+<p>Mongo recomienda que el paginado no sea transparente, crear un script de inicialización y un profile.</p>
+<h3>Script de inicialización</h3>
+<p>Creamos el archivo <code>/etc/init.d/disable-transparent-hugepages</code> con el siguiente contenido:</p>
+<pre><code>#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          disable-transparent-hugepages
+# Required-Start:    $local_fs
+# Required-Stop:
+# X-Start-Before:    mongod mongodb-mms-automation-agent
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Disable Linux transparent huge pages
+# Description:       Disable Linux transparent huge pages, to improve
+#                    database performance.
+### END INIT INFO
+
+case $1 in
+  start)
+    if [ -d /sys/kernel/mm/transparent_hugepage ]; then
+      thp_path=/sys/kernel/mm/transparent_hugepage
+    elif [ -d /sys/kernel/mm/redhat_transparent_hugepage ]; then
+      thp_path=/sys/kernel/mm/redhat_transparent_hugepage
+    else
+      return 0
+    fi
+
+    echo &#39;never&#39; &gt; ${thp_path}/enabled
+    echo &#39;never&#39; &gt; ${thp_path}/defrag
+
+    re=&#39;^[0-1]+$&#39;
+    if [[ $(cat ${thp_path}/khugepaged/defrag) =~ $re ]]
+    then
+      # RHEL 7
+      echo 0  &gt; ${thp_path}/khugepaged/defrag
+    else
+      # RHEL 6
+      echo &#39;no&#39; &gt; ${thp_path}/khugepaged/defrag
+    fi
+
+    unset re
+    unset thp_path
+    ;;
+esac
+</code></pre>
+<p>Habilitando el script:</p>
+<pre><code>sudo chmod 755 /etc/init.d/disable-transparent-hugepages
+sudo chkconfig --add disable-transparent-hugepages
+sudo /etc/init.d/disable-transparent-hugepages start
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Creando profile" duration="3">
+        <p>Creamos el directorio <code>/etc/tuned/no-thp</code></p>
+<pre><code>sudo mkdir /etc/tuned/no-thp
+</code></pre>
+<p>Creamos el archivo <code>/etc/tuned/no-thp/tuned.conf</code> con el siguiente contenido:</p>
+<pre><code>[main]
+include=virtual-guest
+
+[vm]
+transparent_hugepages=never
+</code></pre>
+<p>Habilitamos el profile</p>
+<pre><code>sudo tuned-adm profile no-thp
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Crear usuario de acceso" duration="5">
+        <p>Por seguridad debemos crear un usuario administrador:</p>
+<pre><code>use admin
+db.createUser(
+  {
+    user: &#34;admin&#34;,
+    pwd: &#34;ADMIN_PASSWORD&#34;,
+    roles: [ { role: &#34;userAdminAnyDatabase&#34;, db: &#34;admin&#34; } ]
+  }
+)
+</code></pre>
+<p>Creamos un usuario de conexión para la aplicación</p>
+<pre><code>use BASE_DATOS
+db.createUser(
+  {
+    user: &#34;USUARIO_BASE&#34;,
+    pwd: &#34;PASSWORD_USUARIO&#34;,
+    roles: [ { role: &#34;readWrite&#34;, db: &#34;BASE_DATOS&#34; } ]
+  }
+)
+</code></pre>
+<p>De ser necesario, se puede cambiar el <em>role</em><code>readWrite</code> por <code>read</code> para un acceso de sólo lectura.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Habilitar seguridad" duration="5">
+        <p>Por seguridad debemos habilitar la seguridad en MongoDB, para esto requerimos editar el archivo <code>/etc/mongod.conf</code> y agregar la sección <em>secyruty</em> (por default está comentada) de la siguiente forma:</p>
+<pre><code>security:
+  authorization: &#34;enabled&#34;
+</code></pre>
+<p>En este archivo es muy importante el uso de espacios</p>
+<p>Después se debe reiniciar el servicio:</p>
+<pre><code>sudo systemctl restart mongod
+</code></pre>
+<p>Prueba conexión:</p>
+<pre><code>mongo --port 27017 -u &#34;USUARIO_BASE&#34; -p &#34;PASSWORD_USUARIO&#34; --authenticationDatabase &#34;BASE_DATOS&#34;
+</code></pre>
+<p>Se debe crear el usario previo a habilitar la seguridad.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-49880327-14', 'auto');
+
+    (function() {
+      var gaCodelab = '0';
+      if (gaCodelab) {
+        ga('create', gaCodelab, 'auto', {name: 'codelab'});
+      }
+
+      var gaView;
+      var parts = location.search.substring(1).split('&');
+      for (var i = 0; i < parts.length; i++) {
+        var param = parts[i].split('=');
+        if (param[0] === 'viewga') {
+          gaView = param[1];
+          break;
+        }
+      }
+      if (gaView && gaView !== gaCodelab) {
+        ga('create', gaView, 'auto', {name: 'view'});
+      }
+    })();
+  </script>
+
+</body>
+</html>
