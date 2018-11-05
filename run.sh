@@ -57,8 +57,13 @@ git push
 
 function create() {
 cd edu
-more _machote.md | sed 
-sed -i 's/original/new/g' file.txt
+tutorialCat=`echo $tutorialCat| tr '[:upper:]' '[:lower:]'`
+tutorialName=`echo $tutorialName| tr '[:upper:]' '[:lower:]'`
+codelabNameFile="${tutorialName}.md"  
+postNameFile=`date +"%Y-%m-%d-${codelabNameFile}"`
+echo $codelabNameFile
+echo $postNameFile
+#sed -i 's/original/new/g' file.txt
 
 }
 
@@ -83,7 +88,8 @@ function safeExit() {
 # Set Base Variables
 # ----------------------
 scriptName=$(basename "$0")
-
+tutorialName=$(basename "$2")
+tutorialCat=$(basename "$3")
 # Set Flags
 quiet=false
 printLog=false

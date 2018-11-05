@@ -57,8 +57,10 @@ git push
 
 function create() {
 cd edu
-more _machote.md | sed 
-sed -i 's/original/new/g' file.txt
+echo $SCRIPT_NAME
+
+#cp _machote.md  
+#sed -i 's/original/new/g' file.txt
 
 }
 
@@ -83,7 +85,7 @@ function safeExit() {
 # Set Base Variables
 # ----------------------
 scriptName=$(basename "$0")
-
+SCRIPT_NAME=$(basename "$1")
 # Set Flags
 quiet=false
 printLog=false
