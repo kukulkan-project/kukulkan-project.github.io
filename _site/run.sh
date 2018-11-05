@@ -31,6 +31,11 @@ fi
 if $push ; then
 push
 fi
+
+
+if $create ; then
+create
+fi
 }
 
 function server() {
@@ -48,6 +53,13 @@ function push() {
 git add -A
 git commit -m "updating site"
 git push
+}
+
+function create() {
+cd edu
+more _machote.md | sed 
+sed -i 's/original/new/g' file.txt
+
 }
 
 function trapCleanup() {
@@ -86,6 +98,7 @@ compile=false
 server=false
 codelab=false
 push=false
+create=false
 args=()
 
 # Set Colors
@@ -174,6 +187,7 @@ while [[ $1 = -?* ]]; do
     -p|--push) push=true ;;
     -u|--update) update=true ;;
     -c|--codelab) codelab=true ;;
+    -n|--create) create=true ;;
     -i|--init) init=true ;;
     -b|--branches) branches=true ;;
     -s|--server) server=true ;;
