@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "source": "doc-grammar-jpa-on-kukulkan.md",
+  "format": "html",
+  "prefix": "../../",
+  "mainga": "UA-49880327-14",
+  "updated": "2018-11-05T14:42:52-06:00",
+  "id": "doc-grammar-jpa-on-kukulkan",
+  "duration": 0,
+  "title": "Relationships with JPA",
+  "author": "Kukulkan Team",
+  "summary": "JPA en Kukulkan",
+  "theme": "",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "documentation"
+  ],
+  "tags": [
+    "js"
+  ],
+  "ga": "0",
+  "url": "doc-grammar-jpa-on-kukulkan"
+}

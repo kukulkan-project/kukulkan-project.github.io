@@ -1,0 +1,672 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Relationships with JPA</title>
+  <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../elements/codelab.html">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <style is="custom-style">
+    body {
+      font-family: "Roboto",sans-serif;
+      background: var(--google-codelab-background, #F8F9FA);
+    }
+  </style>
+  
+</head>
+<body unresolved class="fullbleed">
+
+  <google-codelab title="Relationships with JPA"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="OneToOne Unidirectional" duration="0">
+        <h2>UML</h2>
+<p><img alt="Unidirectional OneToOne UML relationship" src="img/1b7b9046d91d279f.jpg"><em>Unidirectional OneToOne UML relationship</em></p>
+<h2>Kukulkan Grammar</h2>
+<pre><code>    entity Left {
+        OneToOne attRight: Right
+    }
+    entity Right {}
+</code></pre>
+<h2>Data Model</h2>
+<p><img alt="Unidirectional OneToOne Data Model" src="img/7ace78a9158c8ed5.png"><em>Unidirectional OneToOne Data Model</em></p>
+<p><em>Foreign Keys</em>:</p>
+<ul>
+<li>From <code>lefts</code> table to <code>rights</code> table: <code>fk_lefts.att_right_id_rights.id</code></li>
+</ul>
+<h2>Java (POJO)</h2>
+<pre><code>    @Entity
+    @Table(name = &#34;lefts&#34;)
+    public class Left implements Serializable {
+        private static final long serialVersionUID = 1L;
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = &#34;id&#34;, unique = true, nullable = false)
+        private Long id;
+
+        @OneToOne
+        @JoinColumn(name = &#34;att_right_id&#34;, unique = true)
+        private Right attRight;
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+        this.id = id;
+        }
+
+        public Right getAttRight() {
+            return attRight;
+        }
+
+        public void setAttRight(Right attRight) {
+            this.attRight = attRight;
+        }
+
+    }
+
+    @Entity
+    @Table(name = &#34;rights&#34;)
+    public class Right implements Serializable {
+        private static final long serialVersionUID = 1L;
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = &#34;id&#34;, unique = true, nullable = false)
+        private Long id;
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+        this.id = id;
+        }
+
+    }
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="OneToMany Unidirectional" duration="0">
+        <h2>UML</h2>
+<p><img alt="Unidirectional OneToMany UML relationship" src="img/4421a8c62655c722.png"><em>Unidirectional OneToMany UML relationship</em></p>
+<p>Unsupported!<br><br>The Left entity must always be navigable from Right entity.<br><br>This case will be the <strong>same as Bidirectional OneToMany</strong></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="ManyToOne Unidirectional" duration="0">
+        <h2>UML</h2>
+<p><img alt="Unidirectional ManyToOne UML relationship" src="img/608e1e2b9a9da856.png"><em>Unidirectional ManyToOne UML relationship</em></p>
+<h2>Kukulkan Grammar</h2>
+<pre><code>    entity Left {
+        ManyToOne attRight: Right
+    }
+    entity Right {}
+</code></pre>
+<h2>Data Model</h2>
+<p><img alt="Unidirectional ManyToOne Data Model" src="img/993234dadeef5757.png"><em>Unidirectional ManyToOne Data Model</em></p>
+<p><em>Foreign Keys</em>:</p>
+<ul>
+<li>From <code>lefts</code> table to <code>rights</code> table: <code>fk_lefts.att_right_id_rights.id</code></li>
+</ul>
+<h2>Java (POJO)</h2>
+<pre><code>    @Entity
+    @Table(name = &#34;lefts&#34;)
+    public class Left implements Serializable {
+        private static final long serialVersionUID = 1L;
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = &#34;id&#34;, unique = true, nullable = false)
+        private Long id;
+
+        @ManyToOne
+        @JoinColumn(name = &#34;att_right_id&#34;)
+        private Right attRight;
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+        this.id = id;
+        }
+
+        public Right getAttRight() {
+            return attRight;
+        }
+
+        public void setAttRight(Right attRight) {
+            this.attRight = attRight;
+        }
+
+    }
+
+    @Entity
+    @Table(name = &#34;rights&#34;)
+    public class Right implements Serializable {
+        private static final long serialVersionUID = 1L;
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = &#34;id&#34;, unique = true, nullable = false)
+        private Long id;
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+        this.id = id;
+        }
+
+    }
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="ManyToMany Unidirectional" duration="0">
+        <h2>UML</h2>
+<p><img alt="Unidirectional ManyToMany UML relationship" src="img/562012620e7e24c4.png"><em>Unidirectional ManyToMany UML relationship</em></p>
+<h2>Kukulkan Grammar</h2>
+<pre><code>    entity Left {
+        ManyToMany attsRight: Right
+    }
+    entity Right {}
+</code></pre>
+<h2>Data Model</h2>
+<p><img alt="Unidirectional ManyToMany Data Model" src="img/8341d8946b7e5fa3.png"><em>Unidirectional ManyToMany Data Model</em></p>
+<p><em>Foreign Keys</em>:</p>
+<ul>
+<li>From <code>lefts_atts_right</code> table to <code>lefts</code> table:  <code>fk_lefts_atts_right.left_id_lefts.id</code></li>
+<li>From <code>lefts_atts_right</code> table to <code>rights</code> table: <code>fk_lefts_atts_right.att_right_id.rights.id</code></li>
+</ul>
+<h2>Java (POJO)</h2>
+<pre><code>    @Entity
+    @Table(name = &#34;lefts&#34;)
+    public class Left implements Serializable {
+        private static final long serialVersionUID = 1L;
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = &#34;id&#34;, unique = true, nullable = false)
+        private Long id;
+
+        @ManyToMany
+        @JoinTable(name = &#34;lefts_atts_right&#34;, 
+        joinColumns = JoinColumn(name=&#34;left_id&#34;, referencedColumnName=&#34;id&#34;),
+        inverseJoinColumns = 
+        @JoinColumn(name=&#34;att_right_id&#34;, referencedColumnName=&#34;id&#34;))
+        private Set&lt;Right&gt; attsRight = new HashSet&lt;&gt;();
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+        this.id = id;
+        }
+
+        public Set&lt;Right&gt; getAttsRight() {
+            return attsRight;
+        }
+
+        public void setAttsRight(Set&lt;Right&gt; attsRight) {
+            this.attsRight = attsRight;
+        }
+
+        public Left addAttRight (Right attsRight) {
+            this.attsRight.add(attsRight);
+            attsRight.getLeft().add(this);
+            return this;
+        }
+
+        public Left removeAttRight(Right attsRight) {
+            this.attsRight.remove(attsRight);
+            attsRight.getLeft().remove(this);
+            return this;
+        } 
+
+    }
+
+    @Entity
+    @Table(name = &#34;rights&#34;)
+    public class Right implements Serializable {
+        private static final long serialVersionUID = 1L;
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = &#34;id&#34;, unique = true, nullable = false)
+        private Long id;
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+            this.id = id;
+        } 
+
+    }
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="OneToOne Bidirectional" duration="0">
+        <h2>UML</h2>
+<p><img alt="Bidirectional OneToOne UML relationship" src="img/43ae8317547d13d0.png"><em>Bidirectional OneToOne UML relationship</em></p>
+<h2>Kukulkan Grammar</h2>
+<pre><code>    entity Left {
+        OneToOne (attLeft) attRight: Right
+    }
+    entity Right {}
+</code></pre>
+<h2>Data Model</h2>
+<p><img alt="Bidirectional OneToOne Data Model" src="img/7ace78a9158c8ed5.png"><em>Bidirectional OneToOne Data Model</em></p>
+<p><em>Foreign Keys</em>:</p>
+<ul>
+<li>From <code>lefts</code> table to <code>rights</code> table: <code>fk_lefts.att_right_id_rights.id</code></li>
+</ul>
+<h2>Java (POJO)</h2>
+<pre><code>    @Entity
+    @Table(name = &#34;lefts&#34;)
+    public class Left implements Serializable {
+        private static final long serialVersionUID = 1L;
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = &#34;id&#34;, unique = true, nullable = false)
+        private Long id;
+
+        @OneToOne
+        @JoinColumn(name = &#34;att_right_id&#34;, unique = true)
+        private Right attRight;
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+        this.id = id;
+        }
+
+        public Right getAttRight() {
+            return attRight;
+        }
+
+        public void setAttRight(Right attRight) {
+            this.attRight = attRight;
+        }
+
+    }
+
+    @Entity
+    @Table(name = &#34;rights&#34;)
+    public class Right implements Serializable {
+        private static final long serialVersionUID = 1L;
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = &#34;id&#34;, unique = true, nullable = false)
+        private Long id;
+
+        @OneToOne(mappedBy = &#34;attRight&#34;)
+        private Left attLeft;
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+        this.id = id;
+        }    
+        
+        public Left getAttLeft() {
+            return attLeft;
+        }
+
+        public void setAttLeft(Left attLeft) {
+            this.attLeft = attLeft;
+        }
+
+    }
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="OneToMany Bidirectional" duration="0">
+        <h2>UML</h2>
+<p><img alt="Bidirectional OneToMany UML relationship" src="img/e8bcad93da3a3f9d.png"><em>Bidirectional OneToMany UML relationship</em></p>
+<h2>Kukulkan Grammar</h2>
+<pre><code>    entity Left {
+        OneToMany (attLeft) attsRight: Right
+    }
+    entity Right {}
+</code></pre>
+<h2>Data Model</h2>
+<p><img alt="Bidirectional OneToMany Data Model" src="img/4ffca7dee5aa0805.png"><em>Bidirectional OneToMany Data Model</em></p>
+<p><em>Foreign Keys</em>:</p>
+<ul>
+<li>From <code>rights</code> table to <code>lefts</code> table: <code>fk_rights.att_left_id_lefts.id</code></li>
+</ul>
+<h2>Java (POJO)</h2>
+<pre><code>    @Entity
+    @Table(name = &#34;lefts&#34;)
+    public class Left implements Serializable {
+        private static final long serialVersionUID = 1L;
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = &#34;id&#34;, unique = true, nullable = false)
+        private Long id;
+
+        @OneToMany(mappedBy = &#34;attLeft&#34;)
+        @JsonIgnore
+        private Set&lt;Right&gt; attsRight = new HashSet&lt;&gt;();
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+        this.id = id;
+        }
+
+        public Set&lt;Right&gt; getAttsRight() {
+            return attsRight;
+        }
+
+        public void setAttsRight(Set&lt;Right&gt; attsRight) {
+            this.attsRight = attsRight;
+        }
+
+        public Left addAttRight (Right attRight) {
+            this.attsRight.add(attRight);
+            attRight.getLeft().add(this);
+            return this;
+        }
+
+        public Left removeAttRight(Right attRight) {
+            this.attsRight.remove(attRight);
+            attRight.getLeft().remove(this);
+            return this;
+        } 
+
+    }
+
+    @Entity
+    @Table(name = &#34;rights&#34;)
+    public class Right implements Serializable {
+        private static final long serialVersionUID = 1L;
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = &#34;id&#34;, unique = true, nullable = false)
+        private Long id;
+
+        @ManyToOne
+        @JoinColumn(name = &#34;att_left_id&#34;)
+        private Left attLeft;
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+        this.id = id;
+        }    
+        
+        public Left getAttLeft() {
+            return attLeft;
+        }
+
+        public void setAttLeft(Left attLeft) {
+            this.attLeft = attLeft;
+        }
+
+    }
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="ManyToOne Bidirectional" duration="0">
+        <h2>UML</h2>
+<p><img alt="Bidirectional ManyToOne UML relationship" src="img/1a0b97db450f124c.png"><em>Bidirectional ManyToOne UML relationship</em></p>
+<h2>Kukulkan Grammar</h2>
+<pre><code>    entity Left {
+        ManyToOne (attsLeft) attRight: Right
+    }
+    entity Right {}
+</code></pre>
+<h2>Data Model</h2>
+<p><img alt="Bidirectional ManyToOne Data Model" src="img/9611b96860a28061.png"><em>Bidirectional ManyToOne Data Model</em></p>
+<p><em>Foreign Keys</em>:</p>
+<ul>
+<li>From <code>lefts</code> table to <code>rights</code> table: <code>fk_lefts.att_right_id_rights.id</code></li>
+</ul>
+<h2>Java (POJO)</h2>
+<pre><code>    @Entity
+    @Table(name = &#34;lefts&#34;)
+    public class Left implements Serializable {
+        private static final long serialVersionUID = 1L;
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = &#34;id&#34;, unique = true, nullable = false)
+        private Long id;
+
+        @ManyToOne
+        @JoinColumn(name = &#34;att_right_id&#34;)
+        private Right attRight;
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+        this.id = id;
+        }
+
+        public Right getAttRight() {
+            return attRight;
+        }
+
+        public void setAttRight(Right attRight) {
+            this.attRight = attRight;
+        }
+
+    }
+
+    @Entity
+    @Table(name = &#34;rights&#34;)
+    public class Right implements Serializable {
+        private static final long serialVersionUID = 1L;
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = &#34;id&#34;, unique = true, nullable = false)
+        private Long id;
+
+        @OneToMany(mappedBy = &#34;attRight&#34;)
+        private Set&lt;Left&gt; attsLeft = new HashSet&lt;&gt;();
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+        this.id = id;
+        }	    
+        
+        public Set&lt;Left&gt; getAttsLeft() {
+            return attsLeft;
+        }
+
+        public void setAttsLeft(Set&lt;Left&gt; attsLeft) {
+            this.attsLeft = attsLeft;
+        }
+
+    }
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="ManyToMany Bidirectional" duration="0">
+        <h2>UML</h2>
+<p><img alt="Bidirectional ManyToMany UML relationship" src="img/f7c4fd09a947cfa5.png"><em>Bidirectional ManyToMany UML relationship</em></p>
+<h2>Kukulkan Grammar</h2>
+<pre><code>    entity Left {
+        ManyToMany (attsLeft) attsRight: Right
+    }
+    entity Right {}
+</code></pre>
+<h2>Data Model</h2>
+<p><img alt="Bidirectional ManyToMany Data Model" src="img/b89a706b209be6f5.png"><em>Bidirectional ManyToMany Data Model</em></p>
+<p><em>Foreign Keys</em>:</p>
+<ul>
+<li>From <code>atts_left_atts_right</code> table to <code>lefts</code> table:  <code>fk_atts_left_atts_right.att_left_id_lefts.id</code></li>
+<li>From <code>atts_left_atts_right</code> table to <code>rights</code> table: <code>fk_atts_left_atts_right.att_right_id.rights.id</code></li>
+</ul>
+<h2>Java (POJO)</h2>
+<pre><code>    @Entity
+    @Table(name = &#34;lefts&#34;)
+    public class Left implements Serializable {
+        private static final long serialVersionUID = 1L;
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = &#34;id&#34;, unique = true, nullable = false)
+        private Long id;
+
+        @ManyToMany
+        @JoinTable(name = &#34;atts_left_atts_right&#34;, 
+        joinColumns = JoinColumn(name=&#34;att_left_id&#34;, referencedColumnName=&#34;id&#34;),
+        inverseJoinColumns = 
+        @JoinColumn(name=&#34;att_right_id&#34;, referencedColumnName=&#34;id&#34;))
+        private Set&lt;Right&gt; attsRight = new HashSet&lt;&gt;();
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+        this.id = id;
+        }
+
+        public Set&lt;Right&gt; getAttsRight() {
+            return attsRight;
+        }
+
+        public void setAttsRight(Set&lt;Right&gt; attsRight) {
+            this.attsRight = attsRight;
+        }
+
+        public Left addAttRight (Right attsRight) {
+            this.attsRight.add(attsRight);
+            attsRight.getLeft().add(this);
+            return this;
+        }
+
+        public Left removeAttRight(Right attsRight) {
+            this.attsRight.remove(attsRight);
+            attsRight.getLeft().remove(this);
+            return this;
+        } 
+
+    }
+
+    @Entity
+    @Table(name = &#34;rights&#34;)
+    public class Right implements Serializable {
+        private static final long serialVersionUID = 1L;
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = &#34;id&#34;, unique = true, nullable = false)
+        private Long id;
+
+        @ManyToMany(mappedBy = &#34;attsRight&#34;)
+        @JsonIgnore
+        private Set&lt;Left&gt; attsLeft = new HashSet&lt;&gt;();
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+        this.id = id;
+        }
+
+        public Set&lt;Left&gt; getLefts() {
+            return attsLeft;
+        }
+
+        public void setLefts(Set&lt;Left&gt; attsLeft) {
+            this.attsLeft = attsLeft;
+        }
+
+        public Right addLeft(Left left) {
+            this.attsLeft.add(left);
+            left.getAttsRight().add(this);
+            return this;
+        }
+
+        public Right removeLeft(Lefts left) {
+            this.lefts.remove(left);
+            lefts.getAttsRight().remove(this);
+            return this;
+        }  
+
+    }
+</code></pre>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-49880327-14', 'auto');
+
+    (function() {
+      var gaCodelab = '0';
+      if (gaCodelab) {
+        ga('create', gaCodelab, 'auto', {name: 'codelab'});
+      }
+
+      var gaView;
+      var parts = location.search.substring(1).split('&');
+      for (var i = 0; i < parts.length; i++) {
+        var param = parts[i].split('=');
+        if (param[0] === 'viewga') {
+          gaView = param[1];
+          break;
+        }
+      }
+      if (gaView && gaView !== gaCodelab) {
+        ga('create', gaView, 'auto', {name: 'view'});
+      }
+    })();
+  </script>
+
+</body>
+</html>
