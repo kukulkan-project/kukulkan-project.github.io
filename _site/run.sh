@@ -57,11 +57,16 @@ git push
 
 function create() {
 cd edu
-echo $SCRIPT_NAME
+tutorialCat=`echo $tutorialCat| tr '[:upper:]' '[:lower:]'`
+tutorialName=`echo $tutorialName| tr '[:upper:]' '[:lower:]'`
+codelabNameFile="${tutorialName}.md"  
+postNameFile=`date +"%Y-%m-%d-${codelabNameFile}"`
 
-#cp _machote.md  
-#sed -i 's/original/new/g' file.txt
-
+echo $codelabNameFile
+echo $postNameFile
+pwd
+data=`sed -i 's/{autor}/hola/g' _machote.md`
+echo $data
 }
 
 function trapCleanup() {
@@ -85,7 +90,8 @@ function safeExit() {
 # Set Base Variables
 # ----------------------
 scriptName=$(basename "$0")
-SCRIPT_NAME=$(basename "$1")
+tutorialName=$(basename "$2")
+tutorialCat=$(basename "$3")
 # Set Flags
 quiet=false
 printLog=false

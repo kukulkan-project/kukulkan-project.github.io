@@ -61,10 +61,12 @@ tutorialCat=`echo $tutorialCat| tr '[:upper:]' '[:lower:]'`
 tutorialName=`echo $tutorialName| tr '[:upper:]' '[:lower:]'`
 codelabNameFile="${tutorialName}.md"  
 postNameFile=`date +"%Y-%m-%d-${codelabNameFile}"`
+
 echo $codelabNameFile
 echo $postNameFile
-#sed -i 's/original/new/g' file.txt
-
+pwd
+data=`sed -i 's/{autor}/hola/g' _machote.md`
+echo $data
 }
 
 function trapCleanup() {

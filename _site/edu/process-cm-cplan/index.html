@@ -1,0 +1,90 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Crear Plan CIBS</title>
+  <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../elements/codelab.html">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <style is="custom-style">
+    body {
+      font-family: "Roboto",sans-serif;
+      background: var(--google-codelab-background, #F8F9FA);
+    }
+  </style>
+  
+</head>
+<body unresolved class="fullbleed">
+
+  <google-codelab title="Crear Plan CIBS"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introducción" duration="0">
+        <h2>Propósito</h2>
+<p>Proveer una guía general para la construcción del Plan de la Administración de la Configuración (PLAN-CIBPS).</p>
+<h2>Criterios de entrada</h2>
+<ul>
+<li>Se desea establecer la línea base para un proyecto específico</li>
+</ul>
+<h2>General</h2>
+<ul>
+<li>Describir las actividades involucradas en la construcción del Plan de la Administración de la Configuración (PLAN-CIBPS)</li>
+<li>Identificar responsables y roles para la Administración de la Configuración.</li>
+<li>Generar la lista de elementos que formaran parte del plan de la Administración de la Configuración (PLAN-CIBPS)</li>
+<li>Definir las fechas programadas Fase/Hito/Iteración en las que se crearán las líneas base.</li>
+</ul>
+<h2>Consideraciones</h2>
+<p>Debido a la naturaleza transversal de la Administración de la Configuración, tenemos un proceso que no es Lineal, por lo que los pasos descritos en este script, se traslapan en actividades ejecutadas dentro de otros; como es el caso de LAU3. Debido a lo anterior, es qué, en cada una de las actividades descritas, se indicará el script con el que se interactúa y que no pertenece, en sí, al proceso administración de la configuración. Ejemplo: actividad de &#34;Preparación de la Configuración&#34; se ejecuta durante la Preparación del lanzamiento (PREP), y para denotar este hecho, se escribe la actividad de la siguiente manera: Preparación de la Configuración (PREP)&#34;.</p>
+<aside class="special"><p><strong>Nota</strong>: El PLAN-CIBPS podrá se almacenado dentro de la herramienta del Process Dashboard, en la que se etiquetarán los elementos que forman parte de alguna línea base con la etiqueta de &#34;lb-item&#34;. De esta manera, los productos que formen parte de una línea base, podrán serán etiquetados, facilitando la creación del plan de la Administración de la Configuración.</p>
+</aside>
+<aside class="special"><p><strong>Nota</strong>: Es importante mencionar que en caso de no contar con la herramienta del Process Dashboard, entonces se deberá de utilizar la forma &#34;PLAN-CIBPS&#34; definida en el proceso de iCM.<br>De aquí en adelante, se mencionará el formato &#34;PLAN-CIBPS&#34;, como elemento principal para la definición de la línea base.</p>
+</aside>
+<h2>Roles</h2>
+<pre><code>• Prospecto a Support Manager
+• Coach TSP
+• Team Leader
+• Support Manager
+• Design Manager y Customer Interface Manager (o en su defecto, los Role Managers que integren el CCB)
+• Planning Manager
+</code></pre>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-49880327-14', 'auto');
+
+    (function() {
+      var gaCodelab = '0';
+      if (gaCodelab) {
+        ga('create', gaCodelab, 'auto', {name: 'codelab'});
+      }
+
+      var gaView;
+      var parts = location.search.substring(1).split('&');
+      for (var i = 0; i < parts.length; i++) {
+        var param = parts[i].split('=');
+        if (param[0] === 'viewga') {
+          gaView = param[1];
+          break;
+        }
+      }
+      if (gaView && gaView !== gaCodelab) {
+        ga('create', gaView, 'auto', {name: 'view'});
+      }
+    })();
+  </script>
+
+</body>
+</html>

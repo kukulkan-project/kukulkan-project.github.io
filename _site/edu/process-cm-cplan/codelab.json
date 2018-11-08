@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "source": "process-cm-cplan.md",
+  "format": "html",
+  "prefix": "../../",
+  "mainga": "UA-49880327-14",
+  "updated": "2018-11-07T16:50:48-06:00",
+  "id": "process-cm-cplan",
+  "duration": 0,
+  "title": "Crear Plan CIBS",
+  "author": "Kukulkan Team",
+  "summary": "Crear plan de la administración de la configuración",
+  "theme": "",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "procesos"
+  ],
+  "tags": [
+    "js"
+  ],
+  "ga": "0",
+  "url": "process-cm-cplan"
+}

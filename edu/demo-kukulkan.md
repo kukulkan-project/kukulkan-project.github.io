@@ -6,7 +6,50 @@ environments: js
 status: draft
 analytics account: 0
 
-# Demo con Kukulkan
+# Introducción a Kukulkan
+
+## Definición
+
+![Introducción](images/demo/kdm.png "Proyecto en Ejecución")
+
+## Modelo de Reutilización
+
+![Proyecto kukulkan](images/demo/reuse-general.png "Proyecto en Ejecución")
+
+## Modelo de Distribución - Shell
+
+![Proyecto kukulkan](images/demo/architecture-as-a-service.png "Proyecto en Ejecución")
+
+![Shell](images/demo/kukulkan-shell.gif "Proyecto en Ejecución")
+
+## Modelo de Distribución - IDE
+
+![Proyecto kukulkan](images/demo/architecture-as-a-service.png "Proyecto en Ejecución")
+
+![Shell](images/demo/kukulkan-shell.gif "Proyecto en Ejecución")
+
+
+## Herramientas para Reutilizar
+
+![Proyecto kukulkan](images/demo/reuse-cognitiva.png "Proyecto en Ejecución")
+
+## KDM mínimo
+
+![Proyecto kukulkan](images/demo/kdm.png "Proyecto en Ejecución")
+
+## Componentes
+
+## Tecnología Soportada
+
+![Tecnología Soportada](images/demo/technology.png "Proyecto en Ejecución")
+
+
+## Capas Generadas
+
+![Capas](images/demo/transformation.png "Proyecto en Ejecución")
+
+![Capas](images/demo/transformation-general.png "Proyecto en Ejecución")
+
 
 ## Creación de un proyecto
 
