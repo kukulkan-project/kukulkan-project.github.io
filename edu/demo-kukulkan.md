@@ -8,11 +8,9 @@ analytics account: 0
 
 # Introducción a Kukulkan
 
-## Definición
+## Introducción
 
-![Introducción](images/demo/architecture-roadmap.png "Proyecto en Ejecución")
-
-## Arquitectura Optimizada
+#### Arquitectura Optimizada
 
 ![Introducción](images/demo/architecture-roadmap.png "Proyecto en Ejecución")
 
