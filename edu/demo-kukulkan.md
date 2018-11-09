@@ -65,9 +65,6 @@ add-entities-from-database --source SQL_MYSQL
 
 ```
 
-Positive
-: Como resultado, se genera el archivo model.3k, que contiene la transformación del modelo E-R
-
 ## Entidades a partir del Lenguaje Kukulkan
 
 Positive
