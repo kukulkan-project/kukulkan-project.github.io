@@ -142,9 +142,6 @@ http://localhost:9000
 
 ## Adición de un chatbot
 
-Positive
-: Antes de agregar un módulo al proyecto base, siempre se deberá de detener el aplicativo
-
 ```bash
 add-chatbot --url-web-socket wss://chatbot-archetype.herokuapp.com
 config ---type FRONT_END
