@@ -10,7 +10,11 @@ analytics account: 0
 
 ## Definición
 
-![Introducción](images/demo/kdm.png "Proyecto en Ejecución")
+![Introducción](images/demo/architecture-roadmap.png "Proyecto en Ejecución")
+
+## Arquitectura Optimizada
+
+![Introducción](images/demo/architecture-roadmap.png "Proyecto en Ejecución")
 
 ## Modelo de Reutilización
 
@@ -35,13 +39,6 @@ analytics account: 0
 ## Tecnologías Soportadas
 
 ![Tecnología Soportada](images/demo/technology.png "Proyecto en Ejecución")
-
-## Capas Generadas
-
-![Capas](images/demo/transformation.png "Proyecto en Ejecución")
-
-![Capas](images/demo/transformation-general.png "Proyecto en Ejecución")
-
 
 ## Creación de un proyecto
 

@@ -25,7 +25,13 @@
                   feedback-link="">
     
       <google-codelab-step label="Definición" duration="0">
-        <p><img alt="Introducción" title="Proyecto en Ejecución" src="img/ab56de96854d4411.png"></p>
+        <p><img alt="Introducción" title="Proyecto en Ejecución" src="img/85202437045d58d0.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Arquitectura Optimizada" duration="0">
+        <p><img alt="Introducción" title="Proyecto en Ejecución" src="img/85202437045d58d0.png"></p>
 
 
       </google-codelab-step>
@@ -155,7 +161,11 @@ views {
       </google-codelab-step>
     
       <google-codelab-step label="Adición de un chatbot" duration="0">
-        <pre><code>add-chatbot --url-web-socket wss://chatbot-archetype.herokuapp.com
+        <aside class="special"><p>Antes de agregar un módulo al proyecto base, siempre se deberá de detener el aplicativo</p>
+</aside>
+<pre><code>add-chatbot --url-web-socket wss://chatbot-archetype.herokuapp.com
+config ---type FRONT_END
+run
 </code></pre>
 
 
