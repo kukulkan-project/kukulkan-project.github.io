@@ -31,14 +31,7 @@
       </google-codelab-step>
     
       <google-codelab-step label="Modelo de Reutilización" duration="0">
-        <p><img alt="Proyecto kukulkan" title="Proyecto en Ejecución" src="img/eb86a008381d1f5d.png"></p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Modelo de Distribución" duration="0">
-        <p><img alt="Proyecto kukulkan" title="Proyecto en Ejecución" src="img/eaadc5426164b56e.png"></p>
-<p><img alt="Shell" title="Proyecto en Ejecución" src="img/f77e8b3f4df2a88e.gif"></p>
+        <p><img alt="Reutilización" title="Proyecto en Ejecución" src="img/eb86a008381d1f5d.png"></p>
 
 
       </google-codelab-step>
@@ -49,18 +42,21 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="KDM mínimo" duration="0">
-        <p><img alt="Proyecto kukulkan" title="Proyecto en Ejecución" src="img/ab56de96854d4411.png"></p>
+      <google-codelab-step label="Modelo de Distribución - Shell" duration="0">
+        <p><img alt="Proyecto kukulkan" title="Proyecto en Ejecución" src="img/eaadc5426164b56e.png"></p>
+<p><img alt="IDE" title="Proyecto en Ejecución" src="img/f77e8b3f4df2a88e.gif"></p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Componentes" duration="0">
-        
+      <google-codelab-step label="Modelo de Distribución - IDE" duration="0">
+        <p><img alt="Proyecto kukulkan" title="Proyecto en Ejecución" src="img/eaadc5426164b56e.png"></p>
+<p><img alt="Shell" title="Proyecto en Ejecución" src="img/1f0eeeee59735d4a.gif"></p>
+
 
       </google-codelab-step>
     
-      <google-codelab-step label="Tecnología Soportada" duration="0">
+      <google-codelab-step label="Tecnologías Soportadas" duration="0">
         <p><img alt="Tecnología Soportada" title="Proyecto en Ejecución" src="img/66a4aa9e94472cfd.png"></p>
 
 
@@ -74,24 +70,35 @@
       </google-codelab-step>
     
       <google-codelab-step label="Creación de un proyecto" duration="0">
-        <pre><code>create-project --app-name demodsl --database-type SQL_MYSQL --packaging com.example
+        <aside class="special"><p>Para conectarse al servicio de kukulkan, se deberá utilizar la interfaz shell</p>
+</aside>
+<pre><code>create-project --app-name ateb --database-type SQL_MYSQL --packaging mx.ateb.sales
+config ---type FRONT_END
+run
 </code></pre>
+<p>El resultado se muestra a continuación:</p>
+<p><img alt="sitio con kukulkan" title="Sitio con Kukulkan" src="img/b261404e5d811671.png"></p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Adición de entidades a partir de la definición de una base de datos" duration="0">
-        <pre><code>add-entities-from-database --source SQL_MYSQL
+      <google-codelab-step label="Entidades a partir de Base de Datos" duration="0">
+        <p><img alt="Capas" title="Proyecto en Ejecución" src="img/9d1c739e17ea3a7.png"></p>
+<pre><code>add-entities-from-database --source SQL_MYSQL
 
 [Se proporcionan las credenciales para la conexión a la base de datos]
 
 </code></pre>
+<aside class="special"><p>Como resultado, se genera el archivo model.3k, que contiene la transformación del modelo E-R</p>
+</aside>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Adición de entidades a partir de la definición de entidades utilizando el Lenguaje Kukulkan" duration="0">
-        <pre><code>// Nombre del archivo: model.3k
+      <google-codelab-step label="Entidades a partir del Lenguaje Kukulkan" duration="0">
+        <aside class="special"><p>Para desarrollor desde cero, se puede crear y editar el archivo model.3k, a partir del cual se define el modelo de dominio del sistema</p>
+</aside>
+<pre><code>// Nombre del archivo: model.3k
 // Se crea la entidad persona con &#39;usuarios&#39; como nombre de la tabla en la base de datos
 entity Persona (usuarios) {
     -&gt; nombre : String required min(3) max(50),
@@ -121,18 +128,27 @@ views {
     Proyecto as Sheet
 }
 </code></pre>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Adición de entidades a partir del modelo de dominio" duration="0">
-        <pre><code>add-entities-from-language --file-name model.3k
+<pre><code>add-entities-from-language --file-name model.3k
 </code></pre>
 <p>Ejecutando la aplicación web:</p>
 <pre><code>run
 </code></pre>
 <p>Use el siguiente comando para matar el proceso:</p>
 <pre><code>stop-process --id [ID_DEL_PROCESO]
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Medir la Calidad del Código Generado" duration="0">
+        <h2>Utilizar sonar con docker</h2>
+<pre><code>docker-start --container-id [id_docker_sonar]
+</code></pre>
+<h2>Ejecutar el análisis de código</h2>
+<pre><code>sonar
+</code></pre>
+<h2>Ver los resultados</h2>
+<pre><code>http://localhost:9000
 </code></pre>
 
 

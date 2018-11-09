@@ -14,35 +14,27 @@ analytics account: 0
 
 ## Modelo de Reutilización
 
-![Proyecto kukulkan](images/demo/reuse-general.png "Proyecto en Ejecución")
-
-## Modelo de Distribución - Shell
-
-![Proyecto kukulkan](images/demo/architecture-as-a-service.png "Proyecto en Ejecución")
-
-![Shell](images/demo/kukulkan-shell.gif "Proyecto en Ejecución")
-
-## Modelo de Distribución - IDE
-
-![Proyecto kukulkan](images/demo/architecture-as-a-service.png "Proyecto en Ejecución")
-
-![Shell](images/demo/kukulkan-shell.gif "Proyecto en Ejecución")
-
+![Reutilización](images/demo/reuse-general.png "Proyecto en Ejecución")
 
 ## Herramientas para Reutilizar
 
 ![Proyecto kukulkan](images/demo/reuse-cognitiva.png "Proyecto en Ejecución")
 
-## KDM mínimo
+## Modelo de Distribución - Shell
 
-![Proyecto kukulkan](images/demo/kdm.png "Proyecto en Ejecución")
+![Proyecto kukulkan](images/demo/architecture-as-a-service.png "Proyecto en Ejecución")
 
-## Componentes
+![IDE](images/demo/kukulkan-shell.gif "Proyecto en Ejecución")
 
-## Tecnología Soportada
+## Modelo de Distribución - IDE
+
+![Proyecto kukulkan](images/demo/architecture-as-a-service.png "Proyecto en Ejecución")
+
+![Shell](images/demo/kukulkan-ide.gif "Proyecto en Ejecución")
+
+## Tecnologías Soportadas
 
 ![Tecnología Soportada](images/demo/technology.png "Proyecto en Ejecución")
-
 
 ## Capas Generadas
 
@@ -53,11 +45,23 @@ analytics account: 0
 
 ## Creación de un proyecto
 
-```shell
-create-project --app-name demodsl --database-type SQL_MYSQL --packaging com.example
+Positive
+: Para conectarse al servicio de kukulkan, se deberá utilizar la interfaz shell 
+
+```bash
+create-project --app-name ateb --database-type SQL_MYSQL --packaging mx.ateb.sales
+config ---type FRONT_END
+run
 ```
 
-## Adición de entidades a partir de la definición de una base de datos
+El resultado se muestra a continuación:
+
+![sitio con kukulkan](images/kukulkan-demo.png "Sitio con Kukulkan")
+
+## Entidades a partir de Base de Datos
+
+![Capas](images/demo/transformation-general.png "Proyecto en Ejecución")
+
 
 ```shell
 add-entities-from-database --source SQL_MYSQL
@@ -66,7 +70,13 @@ add-entities-from-database --source SQL_MYSQL
 
 ```
 
-## Adición de entidades a partir de la definición de entidades utilizando el Lenguaje Kukulkan
+Positive
+: Como resultado, se genera el archivo model.3k, que contiene la transformación del modelo E-R
+
+## Entidades a partir del Lenguaje Kukulkan
+
+Positive
+: Para desarrollor desde cero, se puede crear y editar el archivo model.3k, a partir del cual se define el modelo de dominio del sistema
 
 ```java
 // Nombre del archivo: model.3k
@@ -100,7 +110,6 @@ views {
 }
 ```
 
-## Adición de entidades a partir del modelo de dominio
 
 ```bash
 add-entities-from-language --file-name model.3k
@@ -118,8 +127,34 @@ Use el siguiente comando para matar el proceso:
 stop-process --id [ID_DEL_PROCESO]
 ```
 
+## Medir la Calidad del Código Generado
+
+
+### Utilizar sonar con docker
+
+```bash
+docker-start --container-id [id_docker_sonar]
+```
+
+### Ejecutar el análisis de código
+
+```bash
+sonar
+```
+
+### Ver los resultados
+
+```bash
+http://localhost:9000
+```
+
 ## Adición de un chatbot
+
+Positive
+: Antes de agregar un módulo al proyecto base, siempre se deberá de detener el aplicativo
 
 ```bash
 add-chatbot --url-web-socket wss://chatbot-archetype.herokuapp.com
+config ---type FRONT_END
+run
 ```
