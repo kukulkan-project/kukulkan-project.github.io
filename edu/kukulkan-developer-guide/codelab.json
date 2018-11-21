@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "source": "kukulkan-developer-guide.md",
+  "format": "html",
+  "prefix": "../../",
+  "mainga": "UA-49880327-14",
+  "updated": "2018-11-21T12:54:55-06:00",
+  "id": "kukulkan-developer-guide",
+  "duration": 0,
+  "title": "Kukulkan Developer Guide",
+  "author": "Kukulkan Team",
+  "summary": "Guía de Kukulkán para el desarrollador",
+  "theme": "",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "demo"
+  ],
+  "tags": [
+    "js"
+  ],
+  "ga": "0",
+  "url": "kukulkan-developer-guide"
+}
