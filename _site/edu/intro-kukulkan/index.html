@@ -1,0 +1,252 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Introducción a Kukulkan</title>
+  <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../elements/codelab.html">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <style is="custom-style">
+    body {
+      font-family: "Roboto",sans-serif;
+      background: var(--google-codelab-background, #F8F9FA);
+    }
+  </style>
+  
+</head>
+<body unresolved class="fullbleed">
+
+  <google-codelab title="Introducción a Kukulkan"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introducción" duration="0">
+        <p><img alt="Introducción" title="Logo de kukulkan" src="img/c17cead3a9bd5c98.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Arquitectura - I" duration="0">
+        <h3>Arquitectura Roadmap</h3>
+<p><img alt="Introducción" title="Roadmap de Arquitectura" src="img/85202437045d58d0.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Arquitectura - II" duration="0">
+        <h3>Arquitectura, nivel deseado</h3>
+<p><img alt="Introducción" title="Roadmap de implantación" src="img/f7857e6fe58b5d85.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Entendimiento I" duration="0">
+        <h3>Plano Mental</h3>
+<p><img alt="Plano Mental" title="Entendimiento" src="img/92fc2123f87fa59f.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Entendimiento II" duration="0">
+        <h3>Plano Físico</h3>
+<p><img alt="Plano Físico" title="Entendimiento" src="img/b7827b7317651d78.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Curva de Entendimiento" duration="0">
+        <p><img alt="Curva de Entendimiento" title="Entendimiento" src="img/b6e47d846efb565a.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ciclo tradicional" duration="0">
+        <p><img alt="Reutilización" title="Ciclo Tradicional" src="img/7641332134bad153.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ciclo con kukulkan" duration="0">
+        <p><img alt="Reutilización" title="Ciclo con Kukulkan" src="img/1a4dfd835f484972.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Modelo de Reutilización" duration="0">
+        <p><img alt="Reutilización" title="Reutilización General" src="img/eb86a008381d1f5d.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Herramientas para Reutilizar" duration="0">
+        <p><img alt="Proyecto kukulkan" title="Reutilización Cognitiva" src="img/a18744d6c89ddb24.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="KDM - Mínimo" duration="0">
+        <p><img alt="Kdm" title="KDM Mínimo" src="img/ab56de96854d4411.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Despliegue de la solución" duration="0">
+        <p><img alt="Proyecto kukulkan" title="SEKaaS kukulkan" src="img/83236f3c0c618120.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Modelo de Distribución - Shell" duration="0">
+        <p><img alt="Proyecto kukulkan" title="Architecture as a Service" src="img/bad4b6b5e26a4b3f.png"></p>
+<p><img alt="IDE" title="Kukulkan Shell" src="img/f77e8b3f4df2a88e.gif"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Modelo de Distribución - IDE" duration="0">
+        <p><img alt="Proyecto kukulkan" title="Architecture as a Service" src="img/bad4b6b5e26a4b3f.png"></p>
+<p><img alt="Shell" title="Kukulkan IDE" src="img/1f0eeeee59735d4a.gif"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Tecnologías Soportadas" duration="0">
+        <p><img alt="Tecnología Soportada" title="Tecnology" src="img/66a4aa9e94472cfd.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Implantación de Proyectos" duration="0">
+        <p><img alt="Proyectos Instanciados" title="Tecnology" src="img/d1af6b2a220b34bd.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Creación de un proyecto" duration="0">
+        <aside class="special"><p>Para conectarse al servicio de kukulkan, se deberá utilizar la interfaz shell</p>
+</aside>
+<pre><code>create-project --app-name ateb --database-type SQL_MYSQL --packaging mx.ateb.sales
+config ---type FRONT_END
+run
+</code></pre>
+<p>El resultado se muestra a continuación:</p>
+<p><img alt="sitio con kukulkan" title="Sitio con Kukulkan" src="img/b261404e5d811671.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Entidades a partir de Base de Datos" duration="0">
+        <p><img alt="Capas" title="Proyecto en Ejecución" src="img/9d1c739e17ea3a7.png"></p>
+<pre><code>add-entities-from-database --source SQL_MYSQL
+
+[Se proporcionan las credenciales para la conexión a la base de datos]
+
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Entidades a partir del Lenguaje Kukulkan" duration="0">
+        <aside class="special"><p>Para desarrollor desde cero, se puede crear y editar el archivo model.3k, a partir del cual se define el modelo de dominio del sistema</p>
+</aside>
+<pre><code>// Nombre del archivo: model.3k
+// Se crea la entidad persona con &#39;usuarios&#39; como nombre de la tabla en la base de datos
+entity Persona (usuarios) {
+    -&gt; nombre : String required min(3) max(50),
+    edad : Integer min(5) max(120) required,
+    sueldo : Long,
+    impuesto : Float,
+    activo : Boolean,
+    fechaCreacion : LocalDate,
+    foto : ImageBlob,
+    ManyToOne manager : Persona,
+    ManyToMany proyectos : Proyecto,
+    OneToMany retardos : Retardo,
+    OneToOne user: CoreUser
+}
+
+entity Proyecto {
+    nombre : String required,
+    descripcion : String
+}
+
+entity Retardo {
+    descripcion : String,
+    fecha : LocalDate
+}
+
+views {
+    Proyecto as Sheet
+}
+</code></pre>
+<pre><code>add-entities-from-language --file-name model.3k
+</code></pre>
+<p>Ejecutando la aplicación web:</p>
+<pre><code>run
+</code></pre>
+<p>Use el siguiente comando para matar el proceso:</p>
+<pre><code>stop-process --id [ID_DEL_PROCESO]
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Medir la Calidad del Código Generado" duration="0">
+        <h2>Utilizar sonar con docker</h2>
+<pre><code>docker-start --container-id [id_docker_sonar]
+</code></pre>
+<h2>Ejecutar el análisis de código</h2>
+<pre><code>sonar
+</code></pre>
+<h2>Ver los resultados</h2>
+<pre><code>http://localhost:9000
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Adición de un chatbot" duration="0">
+        <pre><code>add-chatbot --url-web-socket wss://chatbot-archetype.herokuapp.com
+config ---type FRONT_END
+run
+</code></pre>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-49880327-14', 'auto');
+
+    (function() {
+      var gaCodelab = '0';
+      if (gaCodelab) {
+        ga('create', gaCodelab, 'auto', {name: 'codelab'});
+      }
+
+      var gaView;
+      var parts = location.search.substring(1).split('&');
+      for (var i = 0; i < parts.length; i++) {
+        var param = parts[i].split('=');
+        if (param[0] === 'viewga') {
+          gaView = param[1];
+          break;
+        }
+      }
+      if (gaView && gaView !== gaCodelab) {
+        ga('create', gaView, 'auto', {name: 'view'});
+      }
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "source": "intro-kukulkan.md",
+  "format": "html",
+  "prefix": "../../",
+  "mainga": "UA-49880327-14",
+  "updated": "2018-11-26T15:07:38-06:00",
+  "id": "intro-kukulkan",
+  "duration": 0,
+  "title": "Introducción a Kukulkan",
+  "author": "Kukulkan Team",
+  "summary": "Introducción a Kukulkan",
+  "theme": "",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "documentation"
+  ],
+  "tags": [
+    "js"
+  ],
+  "ga": "0",
+  "url": "intro-kukulkan"
+}
