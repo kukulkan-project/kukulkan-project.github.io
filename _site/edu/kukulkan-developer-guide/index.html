@@ -342,6 +342,82 @@ OPTIONS
 
       </google-codelab-step>
     
+      <google-codelab-step label="Administración de usuarios desde consola" duration="0">
+        <p>Cuando se crea una aplicación que usa el arquetipo de JPA, se crean tres archivos con los que se cargan usuarios y roles a la base de datos con Liquibase:</p>
+<ul>
+<li><code>src/main/resources/config/liquibase/users.csv</code>: usuarios</li>
+<li><code>src/main/resources/config/liquibase/authorities.csv</code>: roles</li>
+<li><code>src/main/resources/config/liquibase/users_authorities.csv</code>: relaciona usuarios con roles</li>
+</ul>
+<p>Kukulkán Shell proporciona algunos comandos para administrar usuarios y roles sin tener que ejecutar la aplicación.</p>
+<h2>Comandos para la administración de usuarios:</h2>
+<ul>
+<li><code>list-users</code>: lista los usuarios registrados</li>
+<li><code>add-user</code>: añade un usuario</li>
+<li><code>update-user</code>: actualiza un usuario</li>
+<li><code>delete-user</code>: elimina un usuario</li>
+</ul>
+<h3>Ejemplo:</h3>
+<p>Añadir un usuario:<br><code>add-user --first-name Kukulkan --last-name Kukulkan --email kukulkan@example.com --login kukulkan --authorities ROLE_ADMIN --password 1234</code></p>
+<p>Modificar el password de un usuario:<br><code>update-user  --id 5 --password kukulkan</code></p>
+<p>Eliminar un usuario:<br><code>delete-user --id 5</code></p>
+<h2>Comandos para la administración de roles:</h2>
+<ul>
+<li><code>list-authorities</code>: lista todos los roles</li>
+<li><code>add-authority</code>: añade un rol</li>
+<li><code>add-authority-to-user</code>: añade un rol a un usuario</li>
+<li><code>delete-authority</code>: elimina un rol</li>
+</ul>
+<h3>Ejemplo:</h3>
+<p>Añadir un rol:<br><code>add-authority --name ROLE_SUPERVISOR</code></p>
+<p>Añadir un rol a un usuario:<br><code>add-authority-to-user --authority-name ROLE_SUPERVISOR --user-id 3</code></p>
+<p>Eliminar un rol:<br><code>delete-authority --name ROLE_SUPERVISOR</code></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Despliegue en Heroku" duration="0">
+        <p>Actualmente solo se cuenta con soporte para desplegar una aplicación en Heroku que no requiera una base de datos física, es decir que utilice una base de datos en memoria.</p>
+<p>Existen dos comandos para Heroku:</p>
+<ul>
+<li><code>add-heroku-support</code>: para añadir soporte para desplegar la aplicación en Heroku</li>
+<li><code>deploy-to-heroku</code>: para desplegar la aplicación en Heroku</li>
+</ul>
+<h2>Requisitos</h2>
+<ul>
+<li>Instalar <a href="https://devcenter.heroku.com/articles/heroku-cli" target="_blank">Heroku CLI</a></li>
+<li>Instalar Heroku CLI Deploy: <code>heroku plugins:install heroku-cli-deploy</code></li>
+</ul>
+<h2>Añadir soporte para Heroku</h2>
+<pre><code>NAME
+	add-heroku-support - Add Heroku support to project
+
+SYNOPSYS
+	add-heroku-support [--deploy]  [[--heroku-app-name] string]  
+
+OPTIONS
+	--deploy	
+		[Mandatory]
+
+	--heroku-app-name  string
+		
+		[Optional, default = ]
+</code></pre>
+<h3>Ejemplos:</h3>
+<p>Añadir soporte para Heroku. Intentar crear la aplicación en Heroku con un nombre generado a partir del nombre de mi proyecto. Si el nombre generado no está disponible entonces Heroku generará uno aleatoriamente.<br><code>add-heroku-support</code></p>
+<p>Añadir soporte para Heroku con el nombre <em>my-kukulkan-app<br></em><code>add-heroku-support --heroku-app-name my-kukulkan-app</code></p>
+<p>Añadir soporte para Heroku con el nombre <em>my-kukulkan-app</em> y luego desplegar<br><code>add-heroku-support --heroku-app-name my-kukulkan-app --deploy</code></p>
+<h2>Desplegar en Heroku</h2>
+<pre><code>NAME
+	deploy-to-heroku - Deploy project to Heroku
+
+SYNOPSYS
+	deploy-to-heroku
+</code></pre>
+
+
+      </google-codelab-step>
+    
   </google-codelab>
 
   <script>

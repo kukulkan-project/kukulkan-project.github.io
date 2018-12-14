@@ -295,3 +295,91 @@ Luego de la adición de entidades al proyecto Kukulkán Shell ejecuta el comando
 [Estructura del proyecto](https://github.com/kukulkan-project/kukulkan-generator-angularjs/wiki/Arquitectura-AngularJs)
 
 ### Back-end Spring Boot
+
+## Administración de usuarios desde consola
+Cuando se crea una aplicación que usa el arquetipo de JPA, se crean tres archivos con los que se cargan usuarios y roles a la base de datos con Liquibase:
+
+- `src/main/resources/config/liquibase/users.csv`: usuarios
+- `src/main/resources/config/liquibase/authorities.csv`: roles
+- `src/main/resources/config/liquibase/users_authorities.csv`: relaciona usuarios con roles
+
+Kukulkán Shell proporciona algunos comandos para administrar usuarios y roles sin tener que ejecutar la aplicación.
+
+### Comandos para la administración de usuarios:  
+- `list-users`: lista los usuarios registrados
+- `add-user`: añade un usuario
+- `update-user`: actualiza un usuario
+- `delete-user`: elimina un usuario
+
+#### Ejemplo:
+Añadir un usuario:  
+`add-user --first-name Kukulkan --last-name Kukulkan --email kukulkan@example.com --login kukulkan --authorities ROLE_ADMIN --password 1234`
+
+Modificar el password de un usuario:  
+`update-user  --id 5 --password kukulkan`
+
+Eliminar un usuario:   
+`delete-user --id 5`
+
+### Comandos para la administración de roles:
+- `list-authorities`: lista todos los roles
+- `add-authority`: añade un rol
+- `add-authority-to-user`: añade un rol a un usuario
+- `delete-authority`: elimina un rol
+
+#### Ejemplo:
+Añadir un rol:  
+`add-authority --name ROLE_SUPERVISOR`
+
+Añadir un rol a un usuario:  
+`add-authority-to-user --authority-name ROLE_SUPERVISOR --user-id 3`
+
+Eliminar un rol:  
+`delete-authority --name ROLE_SUPERVISOR`
+
+## Despliegue en Heroku
+Actualmente solo se cuenta con soporte para desplegar una aplicación en Heroku que no requiera una base de datos física, es decir que utilice una base de datos en memoria.  
+
+Existen dos comandos para Heroku:
+- `add-heroku-support`: para añadir soporte para desplegar la aplicación en Heroku
+- `deploy-to-heroku`: para desplegar la aplicación en Heroku
+
+### Requisitos
+- Instalar [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
+- Instalar Heroku CLI Deploy: `heroku plugins:install heroku-cli-deploy`
+
+### Añadir soporte para Heroku
+```
+NAME
+	add-heroku-support - Add Heroku support to project
+
+SYNOPSYS
+	add-heroku-support [--deploy]  [[--heroku-app-name] string]  
+
+OPTIONS
+	--deploy	
+		[Mandatory]
+
+	--heroku-app-name  string
+		
+		[Optional, default = ]
+```
+
+#### Ejemplos:
+Añadir soporte para Heroku. Intentar crear la aplicación en Heroku con un nombre generado a partir del nombre de mi proyecto. Si el nombre generado no está disponible entonces Heroku generará uno aleatoriamente.  
+`add-heroku-support`
+
+Añadir soporte para Heroku con el nombre _my-kukulkan-app_  
+`add-heroku-support --heroku-app-name my-kukulkan-app`
+
+Añadir soporte para Heroku con el nombre _my-kukulkan-app_ y luego desplegar  
+`add-heroku-support --heroku-app-name my-kukulkan-app --deploy`
+
+### Desplegar en Heroku
+```
+NAME
+	deploy-to-heroku - Deploy project to Heroku
+
+SYNOPSYS
+	deploy-to-heroku
+```
