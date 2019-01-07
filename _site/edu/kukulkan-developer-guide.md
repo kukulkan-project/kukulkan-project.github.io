@@ -56,6 +56,11 @@ analytics account: 0
         Proyecto as Sheet
     }
 
+    auditable {
+        Persona,
+        Proyecto
+    }
+
 ## Kukulkan Shell
 
 ### Comandos básicos
@@ -248,6 +253,50 @@ En el DSL de Kukulkan, `CoreUser` es una palabra reservada para representar a la
 	}
 
 Nótese que no es necesario declarar ni importar a `CoreUser` en el modelo de dominio. 
+
+## Vistas
+Actualmente se ofrecen dos tipos diferentes de vistas para las entidades en la interfaz gráfica: 
+- Page (por defecto)
+- Sheet
+
+Se utiliza de la siguiente manera, con entidades previamente declaradas:
+
+```
+entity Persona
+entity Estudiante
+entity Profesor
+
+views {
+    Estudiante as Sheet,
+    Profesor as Sheet
+}
+```
+
+La vista __Page__ se utiliza para mostrar todas las instancias de entidad y sus atributos en una tabla. Se utiliza la estrategia de paginación para mostrar bloques de información.
+
+La vista __Sheet__ se utiliza para mostrar todas las instancias de entidad y sus atributos en una hoja de cálculo (tipo MS Excel). Se utiliza la estrategia de _infinite scroll_ para dar la sensación de estar usando una hoja de cálculo.
+
+## Entidades auditables
+A veces es se requiere guardar meta-información de las entidades en propiedades tales como:
+- createdBy (_creado por_)
+- createdDate (_fecha de creación_)
+- lastModifiedBy (_última modificación por_)
+- lastModifiedDate (_fecha de última modificación_)
+
+Es decir, que las entidades sean _auditables_. Se utiliza de la siguiente manera, con entidades previamente declaradas:
+
+```
+entity Persona
+entity Estudiante
+entity Profesor
+
+auditable {
+    Persona,
+    Estudiante
+}
+```
+
+Al listar estas entidades dentro de la sección __auditable__ se añadirán implícitamente, tal como sucede con el campo id, las propiedades de entidades auditables a cada una de ellas. 
 
 ## Generación de CRUD
 

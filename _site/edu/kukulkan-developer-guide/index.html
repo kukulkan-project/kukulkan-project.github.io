@@ -74,6 +74,11 @@ Cuando se usan vistas tipo &#39;Sheet&#39; se requiere añadir el siguiente repo
 views {
     Proyecto as Sheet
 }
+
+auditable {
+    Persona,
+    Proyecto
+}
 </code></pre>
 
 
@@ -274,6 +279,51 @@ entity Address {
 }
 </code></pre>
 <p>Nótese que no es necesario declarar ni importar a <code>CoreUser</code> en el modelo de dominio.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Vistas" duration="0">
+        <p>Actualmente se ofrecen dos tipos diferentes de vistas para las entidades en la interfaz gráfica:</p>
+<ul>
+<li>Page (por defecto)</li>
+<li>Sheet</li>
+</ul>
+<p>Se utiliza de la siguiente manera, con entidades previamente declaradas:</p>
+<pre><code>entity Persona
+entity Estudiante
+entity Profesor
+
+views {
+    Estudiante as Sheet,
+    Profesor as Sheet
+}
+</code></pre>
+<p>La vista <strong>Page</strong> se utiliza para mostrar todas las instancias de entidad y sus atributos en una tabla. Se utiliza la estrategia de paginación para mostrar bloques de información.</p>
+<p>La vista <strong>Sheet</strong> se utiliza para mostrar todas las instancias de entidad y sus atributos en una hoja de cálculo (tipo MS Excel). Se utiliza la estrategia de <em>infinite scroll</em> para dar la sensación de estar usando una hoja de cálculo.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Entidades auditables" duration="0">
+        <p>A veces es se requiere guardar meta-información de las entidades en propiedades tales como:</p>
+<ul>
+<li>createdBy (<em>creado por</em>)</li>
+<li>createdDate (<em>fecha de creación</em>)</li>
+<li>lastModifiedBy (<em>última modificación por</em>)</li>
+<li>lastModifiedDate (<em>fecha de última modificación</em>)</li>
+</ul>
+<p>Es decir, que las entidades sean <em>auditables</em>. Se utiliza de la siguiente manera, con entidades previamente declaradas:</p>
+<pre><code>entity Persona
+entity Estudiante
+entity Profesor
+
+auditable {
+    Persona,
+    Estudiante
+}
+</code></pre>
+<p>Al listar estas entidades dentro de la sección <strong>auditable</strong> se añadirán implícitamente, tal como sucede con el campo id, las propiedades de entidades auditables a cada una de ellas.</p>
 
 
       </google-codelab-step>
