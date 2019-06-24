@@ -31,6 +31,18 @@ Find more templates, themes and step-by-step Jekyll tutorials at [CloudCannon Ac
 
 Base was built with [Jekyll](http://jekyllrb.com/) version 3.4.3, but should support newer versions as well.
 
+update the "bundler":
+
+~~~bash
+https://bundler.io/blog/2019/01/04/an-update-on-the-bundler-2-release.html
+~~~
+
+install nokogiri 1.8.2
+
+~~~bash
+sudo apt-get install build-essential liblzma-dev patch ruby-dev zlib1g-dev
+~~~bash
+
 Install the dependencies with [Bundler](http://bundler.io/):
 
 ~~~bash
